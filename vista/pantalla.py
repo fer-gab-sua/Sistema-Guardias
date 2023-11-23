@@ -47,6 +47,8 @@ class Ui_MainWindow(object):
         self.combo_bases = QtWidgets.QComboBox(self.alt_grd_movil)
         self.combo_bases.setGeometry(QtCore.QRect(40, 10, 131, 22))
         self.combo_bases.setObjectName("combo_bases")
+        self.combo_bases.addItem("hola")
+        self.combo_bases.addItem("b204")
         self.box_patente = QtWidgets.QLineEdit(self.alt_grd_movil)
         self.box_patente.setEnabled(False)
         self.box_patente.setGeometry(QtCore.QRect(50, 40, 113, 20))

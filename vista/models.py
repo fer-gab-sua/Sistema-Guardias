@@ -88,6 +88,9 @@ class MiBaseDeDatos:
         if self.conexion:
             self.conexion.close()
             print("---> Conexión cerrada")
+    
+    def traerdatos(self,fecha_ini, fecha_fin):
+        pass
 
 
 class Guardia():

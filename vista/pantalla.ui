@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="alt_grd">
      <widget class="QFrame" name="alt_grd_ingreso">
@@ -205,6 +205,14 @@
         </widget>
        </widget>
        <widget class="QWidget" name="alt_grd_paramedic">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>98</width>
+          <height>28</height>
+         </rect>
+        </property>
         <property name="accessibleName">
          <string/>
         </property>
@@ -322,8 +330,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>431</width>
-          <height>650</height>
+          <width>98</width>
+          <height>28</height>
          </rect>
         </property>
         <attribute name="label">
@@ -1232,8 +1240,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>100</width>
-          <height>30</height>
+          <width>98</width>
+          <height>28</height>
          </rect>
         </property>
         <attribute name="label">
