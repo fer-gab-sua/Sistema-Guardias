@@ -1,0 +1,61 @@
+NORMALIZACION DE WIDGETS
+
+PRIMERAS LETRAS DE CADA PALABRA
+EJEMPLO: 
+
+ALTA DE GUARDIA
+
+	adg
+
+INGRESO DE DOTACION MEDICOS
+
+	idm
+
+GAURDIAS CABINA
+
+	gcab
+
+INGRESO DE DOTACION ENFERMEROS
+
+	ide
+
+TIPO DE WIFGETS:
+
+LABEL
+
+	lbl
+
+COMBO
+
+	comb
+
+LINE EDIT
+
+	ent
+
+DATE EDIT
+
+	date
+
+TABLE
+
+	tbl
+
+CALENDAR
+
+	cal
+
+DATE TIME
+
+	fyh
+
+TIME EDIT
+
+	time
+
+BUTTON
+
+	btn
+
+
+
