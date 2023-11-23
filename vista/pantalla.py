@@ -9,10 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from models import MiBaseDeDatos
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.mibase = MiBaseDeDatos()
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1176, 841)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -569,6 +571,9 @@ class Ui_MainWindow(object):
         self.actionEnfermeros.triggered.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.actionHistorial.triggered.connect(lambda: self.stackedWidget.setCurrentIndex(3))
 
+        self.actualizar_combo()
+        
+
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(1)
         self.alt_grd_toolbox.setCurrentIndex(0)
@@ -660,6 +665,15 @@ class Ui_MainWindow(object):
         self.actionHistorial.setText(_translate("MainWindow", "Historial"))
         self.actionDotacion.setText(_translate("MainWindow", "Dotacion"))
         self.actionSalir.setText(_translate("MainWindow", "Salir"))
+
+
+    def actualizar_combo(self):
+        dato = self.mibase.traer_moviles()
+        for base in dato:
+            self.comboBox_2.addItem(base)
+        
+
+
 
 
 if __name__ == "__main__":

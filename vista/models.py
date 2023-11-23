@@ -91,7 +91,9 @@ class MiBaseDeDatos:
     
     def traerdatos(self,fecha_ini, fecha_fin):
         pass
-
+    
+    def traer_moviles(self):
+        return ("b204","b205","b206","b207","b208","b209","b204","b205","b206","b207","b208","b209","b204","b205","b206","b207","b208","b209","b204","b205","b206","b207","b208","b209" )
 
 class Guardia():
     def __init__(self,gua_int_idmovil, gua_fyh_inicial,gua_fyh_final) -> None:
