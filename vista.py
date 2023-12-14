@@ -541,21 +541,21 @@ class Ui_MainWindow(object):
         self.actionMedicos.setObjectName("actionMedicos")
         self.actionEnfermeros = QtWidgets.QAction(MainWindow)
         self.actionEnfermeros.setObjectName("actionEnfermeros")
-        self.actionSalir = QtWidgets.QAction(MainWindow)
-        self.actionSalir.setObjectName("actionSalir")
+        self.actionCabina = QtWidgets.QAction(MainWindow)
+        self.actionCabina.setObjectName("actionCabina")
         self.actionHistorial = QtWidgets.QAction(MainWindow)
         self.actionHistorial.setObjectName("actionHistorial")
         self.actionDotacion = QtWidgets.QAction(MainWindow)
         self.actionDotacion.setObjectName("actionDotacion")
-        self.actionSalir_2 = QtWidgets.QAction(MainWindow)
-        self.actionSalir_2.setObjectName("actionSalir_2")
+        self.actionSalir = QtWidgets.QAction(MainWindow)
+        self.actionSalir.setObjectName("actionSalir")
         self.menuGuardias.addAction(self.actionAlta_de_Guardias)
         self.menuGuardias.addAction(self.actionMedicos)
         self.menuGuardias.addAction(self.actionEnfermeros)
         self.menuGuardias.addAction(self.actionSalir)
         self.menuGuardias.addAction(self.actionHistorial)
         self.menuGuardias.addSeparator()
-        self.menuGuardias.addAction(self.actionSalir_2)
+        self.menuGuardias.addAction(self.actionSalir)
         self.menubar.addAction(self.menuGuardias.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -575,6 +575,16 @@ class Ui_MainWindow(object):
         MainWindow.setTabOrder(self.adg_btn_addguardia, self.adg_tblv_3)
         MainWindow.setTabOrder(self.adg_tblv_3, self.adg_bnt_editguardiaparamedico)
         MainWindow.setTabOrder(self.adg_bnt_editguardiaparamedico, self.adg_btn_delguardiaparamedico)
+
+
+        #########################################################ACA ARRANCA EL CODIGO ##########################################################
+                #conecciones del menu:
+        self.actionAlta_de_Guardias.triggered.connect(lambda: self.StackedWidget_stwid_1.setCurrentIndex(0))
+        self.actionMedicos.triggered.connect(lambda: self.StackedWidget_stwid_1.setCurrentIndex(1))
+        self.actionCabina.triggered.connect(lambda: self.StackedWidget_stwid_1.setCurrentIndex(2))
+        self.actionEnfermeros.triggered.connect(lambda: self.StackedWidget_stwid_1.setCurrentIndex(3))
+        self.actionHistorial.triggered.connect(lambda: self.StackedWidget_stwid_1.setCurrentIndex(3))
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -644,8 +654,8 @@ class Ui_MainWindow(object):
         self.actionAlta_de_Guardias.setText(_translate("MainWindow", "1 Alta de Guardias"))
         self.actionMedicos.setText(_translate("MainWindow", "2 Ingreso Dot Medicos"))
         self.actionEnfermeros.setText(_translate("MainWindow", "3 Ingreso Dot Enfermeros"))
-        self.actionSalir.setText(_translate("MainWindow", "4 Guardia Cabina"))
+        self.actionCabina.setText(_translate("MainWindow", "4 Guardia Cabina"))
         self.actionHistorial.setText(_translate("MainWindow", "5 Historial"))
         self.actionDotacion.setText(_translate("MainWindow", "Dotacion"))
-        self.actionSalir_2.setText(_translate("MainWindow", "6 Salir"))
+        self.actionSalir.setText(_translate("MainWindow", "6 Salir"))
 
