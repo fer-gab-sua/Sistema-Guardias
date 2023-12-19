@@ -6,28 +6,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1176</width>
-    <height>841</height>
+    <width>1159</width>
+    <height>817</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QStackedWidget" name="stackedWidget">
+   <widget class="QStackedWidget" name="StackedWidget_stwid_1">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1171</width>
-      <height>791</height>
+      <x>9</x>
+      <y>9</y>
+      <width>1101</width>
+      <height>731</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="alt_grd">
      <widget class="QFrame" name="alt_grd_ingreso">
@@ -45,7 +45,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QToolBox" name="alt_grd_toolbox">
+      <widget class="QToolBox" name="adg_tlbox_1">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -67,21 +67,21 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="alt_grd_movil">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>431</width>
-          <height>650</height>
+          <width>100</width>
+          <height>30</height>
          </rect>
         </property>
         <attribute name="label">
          <string>Movil</string>
         </attribute>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="adg_lbl_2">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -94,7 +94,7 @@
           <string>Base</string>
          </property>
         </widget>
-        <widget class="QComboBox" name="combo_bases">
+        <widget class="QComboBox" name="adg_comb_base">
          <property name="geometry">
           <rect>
            <x>40</x>
@@ -104,7 +104,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QLineEdit" name="box_patente">
+        <widget class="QLineEdit" name="adg_let_patente">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -117,7 +117,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="adg_lbl_3">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -130,17 +130,7 @@
           <string>Patente</string>
          </property>
         </widget>
-        <widget class="QTableWidget" name="table_bases">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>140</y>
-           <width>411</width>
-           <height>192</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QCommandLinkButton" name="btn_addbases">
+        <widget class="QCommandLinkButton" name="adg_btn_addbase">
          <property name="geometry">
           <rect>
            <x>350</x>
@@ -165,7 +155,7 @@
            <normaloff>../../ProyectoGuardias/qtdesigner</normaloff>../../ProyectoGuardias/qtdesigner</iconset>
          </property>
         </widget>
-        <widget class="QCommandLinkButton" name="btn_delbases">
+        <widget class="QCommandLinkButton" name="adg_btn_delbase">
          <property name="geometry">
           <rect>
            <x>390</x>
@@ -190,7 +180,7 @@
            <normaloff>../../Python/Python39/Lib/site-packages/PySide2</normaloff>../../Python/Python39/Lib/site-packages/PySide2</iconset>
          </property>
         </widget>
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="adg_lbl_4">
          <property name="geometry">
           <rect>
            <x>20</x>
@@ -203,14 +193,24 @@
           <string>Bases:</string>
          </property>
         </widget>
+        <widget class="QTableView" name="adg_tblv_1">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>140</y>
+           <width>391</width>
+           <height>192</height>
+          </rect>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="alt_grd_paramedic">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>98</width>
-          <height>28</height>
+          <width>431</width>
+          <height>650</height>
          </rect>
         </property>
         <property name="accessibleName">
@@ -219,7 +219,7 @@
         <attribute name="label">
          <string>Paramedico</string>
         </attribute>
-        <widget class="QCommandLinkButton" name="btc_addparamedico">
+        <widget class="QCommandLinkButton" name="adg_btn_addparamedico">
          <property name="geometry">
           <rect>
            <x>360</x>
@@ -244,7 +244,7 @@
            <normaloff>../../ProyectoGuardias/qtdesigner</normaloff>../../ProyectoGuardias/qtdesigner</iconset>
          </property>
         </widget>
-        <widget class="QCommandLinkButton" name="btc_delparamedico">
+        <widget class="QCommandLinkButton" name="adg_btn_delparamedico">
          <property name="geometry">
           <rect>
            <x>390</x>
@@ -269,7 +269,7 @@
            <normaloff>../../Python/Python39/Lib/site-packages/PySide2</normaloff>../../Python/Python39/Lib/site-packages/PySide2</iconset>
          </property>
         </widget>
-        <widget class="QTableWidget" name="tableWidget_5">
+        <widget class="QTableWidget" name="adg_tblv_2">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -288,32 +288,32 @@
            <height>131</height>
           </rect>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3">
+         <layout class="QGridLayout" name="adg_glay_1">
           <item row="1" column="0">
-           <widget class="QLabel" name="label_25">
+           <widget class="QLabel" name="adg_lbl_6">
             <property name="text">
              <string>Nombre y Apellido</string>
             </property>
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="label_26">
+           <widget class="QLabel" name="adg_lbl_7">
             <property name="text">
              <string>Vencimiento Licencia</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QDateEdit" name="dateEdit"/>
+           <widget class="QDateEdit" name="adg_date_licenciaparamedico"/>
           </item>
           <item row="1" column="1">
-           <widget class="QComboBox" name="combox_nya_paramedico"/>
+           <widget class="QComboBox" name="adg_comb_nameparamedico"/>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_4"/>
+           <widget class="QLineEdit" name="adg_let_legajoparamedico"/>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="label_27">
+           <widget class="QLabel" name="adg_lbl_5">
             <property name="text">
              <string>Legajo</string>
             </property>
@@ -330,14 +330,14 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>98</width>
-          <height>28</height>
+          <width>431</width>
+          <height>650</height>
          </rect>
         </property>
         <attribute name="label">
          <string>Fechas</string>
         </attribute>
-        <widget class="QCalendarWidget" name="calendarWidget">
+        <widget class="QCalendarWidget" name="adg_cal_1">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -347,7 +347,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QDateTimeEdit" name="fyh_ini">
+        <widget class="QDateTimeEdit" name="adg_fyh_inicio">
          <property name="geometry">
           <rect>
            <x>150</x>
@@ -357,7 +357,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="adg_lbl_9">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -370,7 +370,7 @@
           <string>Duracion de Guardia</string>
          </property>
         </widget>
-        <widget class="QTimeEdit" name="duracionguardia">
+        <widget class="QTimeEdit" name="adg_time_durguardia">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -383,7 +383,7 @@
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="adg_lbl_8">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -396,7 +396,7 @@
           <string>Fecha de inicio:</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_5">
+        <widget class="QLabel" name="adg_lbl_10">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -409,7 +409,7 @@
           <string>Fecha de fin</string>
          </property>
         </widget>
-        <widget class="QDateTimeEdit" name="fyhfin">
+        <widget class="QDateTimeEdit" name="adg_fyh_fin">
          <property name="geometry">
           <rect>
            <x>80</x>
@@ -419,7 +419,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QPushButton" name="agregar_guardia">
+        <widget class="QPushButton" name="adg_btn_addguardia">
          <property name="geometry">
           <rect>
            <x>320</x>
@@ -435,7 +435,7 @@
        </widget>
       </widget>
      </widget>
-     <widget class="QFrame" name="his_grd_ingreso">
+     <widget class="QFrame" name="adg_frm_1">
       <property name="geometry">
        <rect>
         <x>460</x>
@@ -450,7 +450,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QTableWidget" name="tableWidget">
+      <widget class="QTableWidget" name="adg_tblv_3">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -460,7 +460,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QCommandLinkButton" name="del_guardia">
+      <widget class="QCommandLinkButton" name="adg_btn_delguardiaparamedico">
        <property name="geometry">
         <rect>
          <x>500</x>
@@ -473,7 +473,7 @@
         <string>Borrar</string>
        </property>
       </widget>
-      <widget class="QCommandLinkButton" name="edit__guardia">
+      <widget class="QCommandLinkButton" name="adg_bnt_editguardiaparamedico">
        <property name="geometry">
         <rect>
          <x>600</x>
@@ -486,7 +486,7 @@
         <string>Editar</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="adg_lbl_11">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -500,12 +500,12 @@
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="label_30">
+     <widget class="QLabel" name="adg_lbl_1">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>10</y>
-        <width>181</width>
+        <width>231</width>
         <height>16</height>
        </rect>
       </property>
@@ -516,12 +516,12 @@
        </font>
       </property>
       <property name="text">
-       <string>ALTA DE GUARDIA</string>
+       <string>1 ALTA DE GUARDIA</string>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="alt_med">
-     <widget class="QFrame" name="frame">
+     <widget class="QFrame" name="idm_frm_2">
       <property name="geometry">
        <rect>
         <x>630</x>
@@ -536,7 +536,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="idm_lbl_4">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -549,7 +549,7 @@
         <string>Alta de medicos</string>
        </property>
       </widget>
-      <widget class="QToolBox" name="toolBox">
+      <widget class="QToolBox" name="idm_tlbox_1">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -559,7 +559,7 @@
         </rect>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page">
         <property name="geometry">
@@ -573,11 +573,11 @@
         <attribute name="label">
          <string>Medicos</string>
         </attribute>
-        <widget class="QCommandLinkButton" name="addBases_2">
+        <widget class="QCommandLinkButton" name="idm_btn_addaltamedico">
          <property name="geometry">
           <rect>
            <x>360</x>
-           <y>110</y>
+           <y>140</y>
            <width>41</width>
            <height>31</height>
           </rect>
@@ -598,20 +598,7 @@
            <normaloff>../../ProyectoGuardias/qtdesigner</normaloff>../../ProyectoGuardias/qtdesigner</iconset>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_2">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>50</y>
-           <width>113</width>
-           <height>20</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="comboBases_2">
+        <widget class="QComboBox" name="idm_comb_medicos">
          <property name="geometry">
           <rect>
            <x>30</x>
@@ -621,11 +608,11 @@
           </rect>
          </property>
         </widget>
-        <widget class="QCommandLinkButton" name="delBases_2">
+        <widget class="QCommandLinkButton" name="idm_btn_delaltamedico">
          <property name="geometry">
           <rect>
            <x>400</x>
-           <y>110</y>
+           <y>140</y>
            <width>41</width>
            <height>31</height>
           </rect>
@@ -646,13 +633,82 @@
            <normaloff>../../Python/Python39/Lib/site-packages/PySide2</normaloff>../../Python/Python39/Lib/site-packages/PySide2</iconset>
          </property>
         </widget>
-        <widget class="QTableWidget" name="tableWidget_3">
+        <widget class="QTableWidget" name="idm_tlbv_2">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>140</y>
+           <y>180</y>
            <width>431</width>
-           <height>441</height>
+           <height>401</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_12">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>90</y>
+           <width>113</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_10">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>90</y>
+           <width>47</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Apellido</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_13">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>50</y>
+           <width>113</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_11">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>50</y>
+           <width>47</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nombre</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_12">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>130</y>
+           <width>47</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Matricula</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_14">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>130</y>
+           <width>113</width>
+           <height>20</height>
           </rect>
          </property>
         </widget>
@@ -669,7 +725,7 @@
         <attribute name="label">
          <string>Fechas</string>
         </attribute>
-        <widget class="QLabel" name="label_9">
+        <widget class="QLabel" name="idm_lbl_6">
          <property name="geometry">
           <rect>
            <x>50</x>
@@ -682,7 +738,7 @@
           <string>Duracion de Guardia</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="agregar_guardia_2">
+        <widget class="QPushButton" name="idm_btn_add_medico">
          <property name="geometry">
           <rect>
            <x>340</x>
@@ -695,7 +751,7 @@
           <string>Agregar</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_10">
+        <widget class="QLabel" name="idm_lbl_7">
          <property name="geometry">
           <rect>
            <x>50</x>
@@ -708,7 +764,7 @@
           <string>Fecha de fin</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_11">
+        <widget class="QLabel" name="idm_lbl_5">
          <property name="geometry">
           <rect>
            <x>50</x>
@@ -721,7 +777,7 @@
           <string>Fecha de inicio:</string>
          </property>
         </widget>
-        <widget class="QTimeEdit" name="duracionguardia_2">
+        <widget class="QTimeEdit" name="idm_time_1">
          <property name="geometry">
           <rect>
            <x>160</x>
@@ -734,7 +790,7 @@
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QDateTimeEdit" name="fyh_ini_2">
+        <widget class="QDateTimeEdit" name="idm_fyh_inicio">
          <property name="geometry">
           <rect>
            <x>190</x>
@@ -744,7 +800,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QCalendarWidget" name="calendarWidget_2">
+        <widget class="QCalendarWidget" name="idm_cal_1">
          <property name="geometry">
           <rect>
            <x>50</x>
@@ -754,7 +810,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QDateTimeEdit" name="fyhfin_2">
+        <widget class="QDateTimeEdit" name="idm_fyh_fin">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -764,7 +820,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QPushButton" name="agregar_guardia_3">
+        <widget class="QPushButton" name="ide_btn_mod_time_medico">
          <property name="geometry">
           <rect>
            <x>340</x>
@@ -780,7 +836,7 @@
        </widget>
       </widget>
      </widget>
-     <widget class="QFrame" name="frame_2">
+     <widget class="QFrame" name="idm_frm_1">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -795,7 +851,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QTableView" name="tableView">
+      <widget class="QTableView" name="idm_tlbv_1">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -814,30 +870,30 @@
          <height>80</height>
         </rect>
        </property>
-       <layout class="QGridLayout" name="gridLayout_4">
+       <layout class="QGridLayout" name="idm_glay_1">
         <item row="0" column="1">
-         <widget class="QComboBox" name="comboBox_2"/>
+         <widget class="QComboBox" name="idm_comb_movil"/>
         </item>
         <item row="0" column="0">
-         <widget class="QLabel" name="label_28">
+         <widget class="QLabel" name="idm_lbl_2">
           <property name="text">
            <string>Movil</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QLabel" name="label_29">
+         <widget class="QLabel" name="idm_lbl_3">
           <property name="text">
            <string>Paramedico</string>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_9"/>
+         <widget class="QLineEdit" name="idm_let_paramedico"/>
         </item>
        </layout>
       </widget>
-      <widget class="QCheckBox" name="checkBox">
+      <widget class="QCheckBox" name="idm_ckb_filtromedicos">
        <property name="geometry">
         <rect>
          <x>470</x>
@@ -851,7 +907,7 @@
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="label_31">
+     <widget class="QLabel" name="idm_lbl_1">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -867,239 +923,195 @@
        </font>
       </property>
       <property name="text">
-       <string>INGRESO DE DOTACION - MEDICOS</string>
+       <string>2 INGRESO DE DOTACION - MEDICOS</string>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="cab_nov">
-     <widget class="QFrame" name="frame_5">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>50</y>
-        <width>1121</width>
-        <height>741</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QTableView" name="tableView_3">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>140</y>
-         <width>1101</width>
-         <height>301</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QTextEdit" name="textEdit">
-       <property name="geometry">
-        <rect>
-         <x>710</x>
-         <y>460</y>
-         <width>401</width>
-         <height>121</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QWidget" name="gridLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>460</y>
-         <width>701</width>
-         <height>121</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_18">
-          <property name="text">
-           <string>Id Guardia</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QLabel" name="label_22">
-          <property name="text">
-           <string>Medico</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_20">
-          <property name="text">
-           <string>Fecha Fin</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QDateTimeEdit" name="dateTimeEdit_3"/>
-        </item>
-        <item row="1" column="3">
-         <widget class="QLineEdit" name="lineEdit_7"/>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="label_21">
-          <property name="text">
-           <string>Paramedico</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QDateTimeEdit" name="dateTimeEdit_4"/>
-        </item>
-        <item row="2" column="2">
-         <widget class="QLabel" name="label_23">
-          <property name="text">
-           <string>Enfermero</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QLineEdit" name="lineEdit_6"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_19">
-          <property name="text">
-           <string>Fecha Inicio</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3">
-         <widget class="QLineEdit" name="lineEdit_8"/>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_5"/>
-        </item>
-        <item row="0" column="4">
-         <widget class="QLabel" name="label_24">
-          <property name="text">
-           <string>Observaciones</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="gridLayoutWidget_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>610</y>
-         <width>1111</width>
-         <height>80</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="QCommandLinkButton" name="commandLinkButton">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Cerrar Guardia Anticipada</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QCommandLinkButton" name="commandLinkButton_3">
-          <property name="text">
-           <string>Cortar Guardia</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QCommandLinkButton" name="commandLinkButton_2">
-          <property name="text">
-           <string>Modificar Guardia</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QCommandLinkButton" name="commandLinkButton_4">
-          <property name="text">
-           <string>Agregar Observacion</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="horizontalLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>40</y>
-         <width>1101</width>
-         <height>80</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="label_16">
-          <property name="text">
-           <string>Fecha Inicio</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDateTimeEdit" name="dateTimeEdit"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_17">
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="text">
-           <string>Fecha Fin</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QDateTimeEdit" name="dateTimeEdit_2"/>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBox_2">
-          <property name="text">
-           <string>Filtrar</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QLabel" name="label_32">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>441</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>MS Reference Sans Serif</family>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>GUARDIAS CABINA</string>
-      </property>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="gcab_lbl_1">
+        <property name="font">
+         <font>
+          <family>MS Reference Sans Serif</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>4 GUARDIAS CABINA</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="gcab_frm_1">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QFormLayout" name="formLayout">
+         <item row="0" column="0" colspan="2">
+          <layout class="QHBoxLayout" name="gcab_hlay_1">
+           <item>
+            <widget class="QLabel" name="gcab_lbl_2">
+             <property name="text">
+              <string>Fecha Inicio</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateTimeEdit" name="gcab_fyh_iniciofiltro"/>
+           </item>
+           <item>
+            <widget class="QLabel" name="gcab_lbl_3">
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Fecha Fin</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateTimeEdit" name="gcab_fyh_finfiltro"/>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="gcab_ckb_fyhguardia">
+             <property name="text">
+              <string>Filtrar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QTableView" name="gcab_tblv_1"/>
+         </item>
+         <item row="2" column="0">
+          <layout class="QGridLayout" name="gcab_glay_2">
+           <item row="0" column="0">
+            <widget class="QLabel" name="gcab_lbl_4">
+             <property name="text">
+              <string>Id Guardia</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="gcab_lbl_8">
+             <property name="text">
+              <string>Medico</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="gcab_lbl_9">
+             <property name="text">
+              <string>Fecha Fin</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDateTimeEdit" name="gcab_fyh_inicioidguardia"/>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLineEdit" name="gcab_let_medico"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="gcab_lbl_5">
+             <property name="text">
+              <string>Paramedico</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QDateTimeEdit" name="gcab_fyh_finidguardia"/>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLabel" name="gcab_lbl_10">
+             <property name="text">
+              <string>Enfermero</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLineEdit" name="gcab_let_paramedico"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="gcab_lbl_7">
+             <property name="text">
+              <string>Fecha Inicio</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3">
+            <widget class="QLineEdit" name="gcab_let_enfermero"/>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="gcab_let_idguardia"/>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="gcab_lbl_6">
+             <property name="text">
+              <string>Observaciones</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="1">
+          <widget class="QTextEdit" name="gcab_txe_observaciones"/>
+         </item>
+         <item row="3" column="0" colspan="2">
+          <layout class="QGridLayout" name="gcab_hlay_3">
+           <item row="0" column="1">
+            <widget class="QCommandLinkButton" name="gcab_btn_mod">
+             <property name="text">
+              <string>Modificar Guardia</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QCommandLinkButton" name="gcab_btn_addobs">
+             <property name="text">
+              <string>Agregar Observacion</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCommandLinkButton" name="gcab_clb_close">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Cerrar Guardia Anticipada</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QCommandLinkButton" name="gcab_btn_cut">
+             <property name="text">
+              <string>Cortar Guardia</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+        <zorder>gcab_txe_observaciones</zorder>
+        <zorder>gcab_tblv_1</zorder>
+       </widget>
+      </item>
+     </layout>
     </widget>
     <widget class="QWidget" name="alt_enf">
-     <widget class="QFrame" name="frame_3">
+     <widget class="QFrame" name="ide_frm_2">
       <property name="geometry">
        <rect>
         <x>630</x>
@@ -1114,7 +1126,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QLabel" name="label_12">
+      <widget class="QLabel" name="ide_lbl_4">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1127,7 +1139,7 @@
         <string>Alta Enfermeros</string>
        </property>
       </widget>
-      <widget class="QToolBox" name="toolBox_2">
+      <widget class="QToolBox" name="ide_tlbox_1">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1151,7 +1163,7 @@
         <attribute name="label">
          <string>Enfermero</string>
         </attribute>
-        <widget class="QCommandLinkButton" name="addBases_3">
+        <widget class="QCommandLinkButton" name="ide_btn_addaltaenfermero">
          <property name="geometry">
           <rect>
            <x>360</x>
@@ -1176,20 +1188,7 @@
            <normaloff>../../ProyectoGuardias/qtdesigner</normaloff>../../ProyectoGuardias/qtdesigner</iconset>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_3">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>50</y>
-           <width>113</width>
-           <height>20</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="comboBases_3">
+        <widget class="QComboBox" name="ide_comb_enfermero">
          <property name="geometry">
           <rect>
            <x>30</x>
@@ -1199,7 +1198,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QCommandLinkButton" name="delBases_3">
+        <widget class="QCommandLinkButton" name="ide_btn_delaltaenfermero">
          <property name="geometry">
           <rect>
            <x>400</x>
@@ -1224,14 +1223,83 @@
            <normaloff>../../Python/Python39/Lib/site-packages/PySide2</normaloff>../../Python/Python39/Lib/site-packages/PySide2</iconset>
          </property>
         </widget>
-        <widget class="QTableWidget" name="tableWidget_4">
+        <widget class="QTableWidget" name="ide_tlbv_2">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>140</y>
+           <y>170</y>
            <width>431</width>
-           <height>441</height>
+           <height>411</height>
           </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>40</y>
+           <width>47</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nombre</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_2">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>80</y>
+           <width>47</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Apellido</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>40</y>
+           <width>113</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_3">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>80</y>
+           <width>113</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_4">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>120</y>
+           <width>113</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>120</y>
+           <width>47</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Matricula</string>
          </property>
         </widget>
        </widget>
@@ -1240,14 +1308,14 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>98</width>
-          <height>28</height>
+          <width>441</width>
+          <height>587</height>
          </rect>
         </property>
         <attribute name="label">
          <string>Fechas</string>
         </attribute>
-        <widget class="QLabel" name="label_13">
+        <widget class="QLabel" name="ide_lbl_6">
          <property name="geometry">
           <rect>
            <x>50</x>
@@ -1260,7 +1328,7 @@
           <string>Duracion de Guardia</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="agregar_guardia_4">
+        <widget class="QPushButton" name="ide_btn_add_enfermero">
          <property name="geometry">
           <rect>
            <x>340</x>
@@ -1273,7 +1341,7 @@
           <string>Agregar</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_14">
+        <widget class="QLabel" name="ide_lbl_7">
          <property name="geometry">
           <rect>
            <x>50</x>
@@ -1286,7 +1354,7 @@
           <string>Fecha de fin</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_15">
+        <widget class="QLabel" name="ide_lbl_5">
          <property name="geometry">
           <rect>
            <x>50</x>
@@ -1299,7 +1367,7 @@
           <string>Fecha de inicio:</string>
          </property>
         </widget>
-        <widget class="QTimeEdit" name="duracionguardia_3">
+        <widget class="QTimeEdit" name="ide_time_1">
          <property name="geometry">
           <rect>
            <x>160</x>
@@ -1312,7 +1380,7 @@
           <bool>true</bool>
          </property>
         </widget>
-        <widget class="QDateTimeEdit" name="fyh_ini_3">
+        <widget class="QDateTimeEdit" name="ide_fyh_inicio">
          <property name="geometry">
           <rect>
            <x>190</x>
@@ -1322,7 +1390,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QCalendarWidget" name="calendarWidget_3">
+        <widget class="QCalendarWidget" name="ide_cal_1">
          <property name="geometry">
           <rect>
            <x>50</x>
@@ -1332,7 +1400,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QDateTimeEdit" name="fyhfin_3">
+        <widget class="QDateTimeEdit" name="ide_fyh_fin">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -1342,7 +1410,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QPushButton" name="agregar_guardia_5">
+        <widget class="QPushButton" name="ide_btn_mod_time_enfermero">
          <property name="geometry">
           <rect>
            <x>340</x>
@@ -1358,7 +1426,7 @@
        </widget>
       </widget>
      </widget>
-     <widget class="QFrame" name="frame_4">
+     <widget class="QFrame" name="ide_frm_1">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1373,7 +1441,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QTableView" name="tableView_2">
+      <widget class="QTableView" name="ide_tlbv_1">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1384,7 +1452,7 @@
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="label_33">
+     <widget class="QLabel" name="ide_lbl_1">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -1400,7 +1468,7 @@
        </font>
       </property>
       <property name="text">
-       <string>INGRESO DE DOTACION - ENFERMEROS</string>
+       <string>3 INGRESO DE DOTACION - ENFERMEROS</string>
       </property>
      </widget>
     </widget>
@@ -1411,7 +1479,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1176</width>
+     <width>1159</width>
      <height>21</height>
     </rect>
    </property>
@@ -1438,27 +1506,27 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Alta de Guardias</string>
+    <string>1 Alta de Guardias</string>
    </property>
   </action>
   <action name="actionMedicos">
    <property name="text">
-    <string>Medicos</string>
+    <string>2 Ingreso Dot Medicos</string>
    </property>
   </action>
   <action name="actionEnfermeros">
    <property name="text">
-    <string>Enfermeros</string>
+    <string>3 Ingreso Dot Enfermeros</string>
    </property>
   </action>
   <action name="actionSalir">
    <property name="text">
-    <string>Cabina</string>
+    <string>4 Guardia Cabina</string>
    </property>
   </action>
   <action name="actionHistorial">
    <property name="text">
-    <string>Historial</string>
+    <string>5 Historial</string>
    </property>
   </action>
   <action name="actionDotacion">
@@ -1468,24 +1536,23 @@
   </action>
   <action name="actionSalir_2">
    <property name="text">
-    <string>Salir</string>
+    <string>6 Salir</string>
    </property>
   </action>
  </widget>
  <tabstops>
-  <tabstop>combo_bases</tabstop>
-  <tabstop>box_patente</tabstop>
-  <tabstop>btn_addbases</tabstop>
-  <tabstop>btn_delbases</tabstop>
-  <tabstop>table_bases</tabstop>
-  <tabstop>fyh_ini</tabstop>
-  <tabstop>calendarWidget</tabstop>
-  <tabstop>duracionguardia</tabstop>
-  <tabstop>fyhfin</tabstop>
-  <tabstop>agregar_guardia</tabstop>
-  <tabstop>tableWidget</tabstop>
-  <tabstop>edit__guardia</tabstop>
-  <tabstop>del_guardia</tabstop>
+  <tabstop>adg_comb_base</tabstop>
+  <tabstop>adg_let_patente</tabstop>
+  <tabstop>adg_btn_addbase</tabstop>
+  <tabstop>adg_btn_delbase</tabstop>
+  <tabstop>adg_fyh_inicio</tabstop>
+  <tabstop>adg_cal_1</tabstop>
+  <tabstop>adg_time_durguardia</tabstop>
+  <tabstop>adg_fyh_fin</tabstop>
+  <tabstop>adg_btn_addguardia</tabstop>
+  <tabstop>adg_tblv_3</tabstop>
+  <tabstop>adg_bnt_editguardiaparamedico</tabstop>
+  <tabstop>adg_btn_delguardiaparamedico</tabstop>
  </tabstops>
  <resources/>
  <connections/>
