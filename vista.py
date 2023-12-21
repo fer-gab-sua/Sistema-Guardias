@@ -659,3 +659,14 @@ class Ui_MainWindow(object):
         self.actionDotacion.setText(_translate("MainWindow", "Dotacion"))
         self.actionSalir.setText(_translate("MainWindow", "6 Salir"))
 
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(636, 456)
+
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Form"))
