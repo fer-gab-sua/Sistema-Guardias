@@ -20,7 +20,8 @@ class Ui_LoginForm(QtWidgets.QWidget):
     def abrir_ventana_principal(self):
         self.hide()  # Oculta la ventana de login
         self.ventana_principal.show()  # Muestra la única instancia de la ventana principal
-        self.ventana_principal.label.setText(f"bienvenido {self.user.text()}!!")
+        self.ventana_principal.user_init.setText(self.user.text())
+        self.ventana_principal.permisos(self.user.text())
         
 
 if __name__ == "__main__":

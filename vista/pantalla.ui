@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1180</width>
-    <height>827</height>
+    <width>1219</width>
+    <height>880</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,21 +29,7 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="page_5">
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>50</y>
-        <width>161</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Bienvenido</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="QWidget" name="page_5"/>
     <widget class="QWidget" name="alt_grd">
      <widget class="QFrame" name="alt_grd_ingreso">
       <property name="geometry">
@@ -89,8 +75,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>98</width>
-          <height>28</height>
+          <width>100</width>
+          <height>30</height>
          </rect>
         </property>
         <attribute name="label">
@@ -345,8 +331,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>98</width>
-          <height>28</height>
+          <width>100</width>
+          <height>30</height>
          </rect>
         </property>
         <attribute name="label">
@@ -677,8 +663,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>441</width>
-          <height>587</height>
+          <width>100</width>
+          <height>30</height>
          </rect>
         </property>
         <attribute name="label">
@@ -1255,8 +1241,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>98</width>
-          <height>28</height>
+          <width>100</width>
+          <height>30</height>
          </rect>
         </property>
         <attribute name="label">
@@ -1420,13 +1406,26 @@
      </widget>
     </widget>
    </widget>
+   <widget class="QLabel" name="user_init">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>820</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bienvenido</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1180</width>
+     <width>1219</width>
      <height>21</height>
     </rect>
    </property>
