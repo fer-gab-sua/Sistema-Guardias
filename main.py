@@ -1,16 +1,32 @@
-from PyQt5 import QtWidgets
-import sys
+from PyQt5 import QtWidgets, uic
+from logica.ventanaprincipal import Ui_VentanaPrincipal
+from modelo.Conect import ConsultasSql
 
-# Importa la clase Ui_MainWindow del módulo donde la has definido
-from vista import Ui_MainWindow , Ui_Form
 
-class MyApp(QtWidgets.QMainWindow, Ui_Form):
+class Ui_LoginForm(QtWidgets.QWidget):
     def __init__(self):
-        super(MyApp, self).__init__()
-        self.setupUi(self)
+        super(Ui_LoginForm, self).__init__()
+        self.ventana_principal = Ui_VentanaPrincipal()  # Instancia única de la ventana principal
+        uic.loadUi('vista/login.ui', self)
+        self.pushButton.clicked.connect(self.validar_credenciales)
+        self.consultasql = ConsultasSql()
+
+    def validar_credenciales(self):
+        if self.consultasql.validar_usuarios(self.user.text(),self.passw.text()) == True:
+            self.abrir_ventana_principal()
+        else:
+            QtWidgets.QMessageBox.warning(self, 'Error', 'Credenciales incorrectas', QtWidgets.QMessageBox.Ok)
+
+    def abrir_ventana_principal(self):
+        self.hide()  # Oculta la ventana de login
+        self.ventana_principal.show()  # Muestra la única instancia de la ventana principal
+        self.ventana_principal.label.setText(f"bienvenido {self.user.text()}!!")
+        
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    mainWindow = MyApp()
-    mainWindow.show()
-    sys.exit(app.exec_())
+    app = QtWidgets.QApplication([])
+
+    login_form = Ui_LoginForm()
+    login_form.show()
+
+    app.exec_()
