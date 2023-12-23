@@ -27,9 +27,9 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
-    <widget class="QWidget" name="page_5"/>
+    <widget class="QWidget" name="inicio"/>
     <widget class="QWidget" name="alt_grd">
      <widget class="QFrame" name="alt_grd_ingreso">
       <property name="geometry">
@@ -68,15 +68,15 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="alt_grd_movil">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>100</width>
-          <height>30</height>
+          <width>431</width>
+          <height>650</height>
          </rect>
         </property>
         <attribute name="label">
@@ -331,8 +331,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>100</width>
-          <height>30</height>
+          <width>431</width>
+          <height>650</height>
          </rect>
         </property>
         <attribute name="label">
@@ -1241,8 +1241,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>100</width>
-          <height>30</height>
+          <width>441</width>
+          <height>587</height>
          </rect>
         </property>
         <attribute name="label">
@@ -1405,6 +1405,227 @@
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="page_5">
+     <widget class="QFrame" name="gcab_frm_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>1121</width>
+        <height>741</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QTableView" name="gcab_tblv_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>1101</width>
+         <height>301</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="gcab_txe_observaciones_2">
+       <property name="geometry">
+        <rect>
+         <x>710</x>
+         <y>460</y>
+         <width>401</width>
+         <height>121</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QWidget" name="gridLayoutWidget_5">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>460</y>
+         <width>701</width>
+         <height>121</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gcab_glay_3">
+        <item row="0" column="0">
+         <widget class="QLabel" name="gcab_lbl_11">
+          <property name="text">
+           <string>Id Guardia</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="gcab_lbl_12">
+          <property name="text">
+           <string>Medico</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="gcab_lbl_13">
+          <property name="text">
+           <string>Fecha Fin</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDateTimeEdit" name="gcab_fyh_inicioidguardia_2"/>
+        </item>
+        <item row="1" column="3">
+         <widget class="QLineEdit" name="gcab_let_medico_2"/>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="gcab_lbl_14">
+          <property name="text">
+           <string>Paramedico</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QDateTimeEdit" name="gcab_fyh_finidguardia_2"/>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLabel" name="gcab_lbl_15">
+          <property name="text">
+           <string>Enfermero</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLineEdit" name="gcab_let_paramedico_2"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="gcab_lbl_16">
+          <property name="text">
+           <string>Fecha Inicio</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QLineEdit" name="gcab_let_enfermero_2"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="gcab_let_idguardia_2"/>
+        </item>
+        <item row="0" column="4">
+         <widget class="QLabel" name="gcab_lbl_17">
+          <property name="text">
+           <string>Observaciones</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="gridLayoutWidget_6">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>610</y>
+         <width>1111</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gcab_hlay_4">
+        <item row="0" column="1">
+         <widget class="QCommandLinkButton" name="gcab_btn_mod_2">
+          <property name="text">
+           <string>Modificar Guardia</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QCommandLinkButton" name="gcab_btn_addobs_2">
+          <property name="text">
+           <string>Agregar Observacion</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QCommandLinkButton" name="gcab_clb_close_2">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Cerrar Guardia Anticipada</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QCommandLinkButton" name="gcab_btn_cut_2">
+          <property name="text">
+           <string>Cortar Guardia</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>1101</width>
+         <height>80</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="gcab_hlay_2">
+        <item>
+         <widget class="QLabel" name="gcab_lbl_18">
+          <property name="text">
+           <string>Fecha Inicio</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateTimeEdit" name="gcab_fyh_iniciofiltro_2"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="gcab_lbl_19">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>Fecha Fin</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateTimeEdit" name="gcab_fyh_finfiltro_2"/>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="gcab_ckb_fyhguardia_2">
+          <property name="text">
+           <string>Filtrar</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>10</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Historial</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
    </widget>
    <widget class="QLabel" name="user_init">
     <property name="geometry">
@@ -1449,28 +1670,52 @@
     <bool>true</bool>
    </property>
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>1 Alta de Guardias</string>
    </property>
   </action>
   <action name="actionMedicos">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>2 Ingreso Dot Medicos</string>
    </property>
   </action>
   <action name="actionEnfermeros">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>3 Ingreso Dot Enfermeros</string>
    </property>
   </action>
   <action name="actionCabina">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>4 Guardia Cabina</string>
    </property>
   </action>
   <action name="actionHistorial">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>5 Historial</string>
    </property>
@@ -1481,6 +1726,9 @@
    </property>
   </action>
   <action name="actionSalir">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>6 Salir</string>
    </property>

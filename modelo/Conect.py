@@ -27,16 +27,15 @@ class ConexionConBase:
             self.conn.close()
             print("Conexión cerrada.")
 
-
-
 class ConsultasSql(ConexionConBase):
     def validar_usuarios(self,usuario,contraseña):
         try:
             self.conectar()
             cursor = self.conn.cursor()
-            consulta = "Select Usuario,Pass from Usuarios"
-            cursor.execute(consulta)
+            consulta = "Select Usuario,Pass from Usuarios WHERE Usuario = ?"
+            cursor.execute(consulta,usuario)
             resultado = cursor.fetchall()
+            print(resultado)
             if usuario == resultado[0][0] and contraseña == resultado[0][1]:
                 return True
             else:
@@ -48,8 +47,48 @@ class ConsultasSql(ConexionConBase):
         finally:
             self.cerrar_conexion()
 
+    def trae_permisos(self,usuario):
+        try:
+            self.conectar()
+            cursor = self.conn.cursor()
+            consulta = """
+                        SELECT Usuarios.Usuario, Permisos.VentanaHabilitada
+                        FROM Permisos
+                        JOIN Usuarios ON Usuarios.Id = Permisos.idUsuario
+                        WHERE Usuarios.Usuario = ?;
+                    """
+            cursor.execute(consulta,usuario)
+            resultado = cursor.fetchall()
+            return resultado
+            
+        except pyodbc.Error as ex:
+            print("Error al ejecutar la consulta:", ex)
+            return None
+        finally:
+            self.cerrar_conexion()
+
+
+class AltaGuardia(ConexionConBase):
+    def fill_Bases_sql(self):
+        try:
+            self.conectar()
+            cursor = self.conn.cursor()
+            consulta = """
+                        SELECT mov_txt_movil, mov_txt_patente
+                        FROM Moviles
+                    """
+            cursor.execute(consulta)
+            resultado = cursor.fetchall()
+            return resultado
+            
+        except pyodbc.Error as ex:
+            print("Error al ejecutar la consulta:", ex)
+            return None
+        finally:
+            self.cerrar_conexion()
+
 # Ejemplo de uso de la clase
 if __name__ == "__main__":
     consultasql = ConsultasSql()
-    resultado = consultasql.validar_usuarios("Admin","Admin")
+    resultado = consultasql.trae_permisos("coordinacionMoviles")
     print(resultado)
