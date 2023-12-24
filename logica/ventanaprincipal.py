@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, uic 
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-
+from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton
 
 from modelo.Conect import ConsultasSql , AltaGuardia
 
@@ -34,7 +34,11 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.adg_tblv_1.setModel(self.model)
         #lleno el combo box
         self.fill_adg_comb_base()
-        self.adg_comb_basecurrentIndexChanged.connect(self.metodo_seleccion)
+        self.adg_comb_base.currentIndexChanged.connect(self.select_adg_comb_base)
+
+        #conecto el add y del de la base de moviles
+        self.adg_btn_addbase.clicked.connect(lambda:self.addbase())
+        self.adg_btn_delbase.clicked.connect(lambda:self.delbase())
 
 
 
@@ -66,6 +70,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
                     print("permiso 5")
                     self.actionHistorial.setEnabled(True)
 
+    """########## TODO ALTA DE GUARDIAS #######################"""
     def fill_adg_tblv_1(self,):
         bases_datos = self.sqlaltaguardia.fill_Bases_sql()
 
@@ -83,4 +88,47 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
 
     def select_adg_comb_base(self):
         selected_text = self.adg_comb_base.currentText()
-        print(f"Elemento seleccionado: {selected_text}")
+        patente = self.sqlaltaguardia.patente(selected_text)
+        self.adg_let_patente.setText(str(patente[0][0]))
+
+    def addbase(self,):
+        subventanamov = SubVentanaMovil()
+        subventanamov.exec_()
+
+
+    def delbase(self):
+        pass
+    
+    
+    
+class SubVentanaMovil(QDialog):
+    def __init__(self):
+        super(SubVentanaMovil, self).__init__()
+
+        # Crear widgets para la subventana
+        self.label_movil = QLabel("Movil:")
+        self.lineEdit_movil = QLineEdit(self)
+
+        self.label_patente = QLabel("Patente:")
+        self.lineEdit_patente = QLineEdit(self)
+
+        self.btnAceptar = QPushButton("Aceptar")
+        self.btnAceptar.clicked.connect(self.guardar_movil)
+
+        # Crear el diseño de la subventana
+        layout = QVBoxLayout()
+        layout.addWidget(self.label_movil)
+        layout.addWidget(self.lineEdit_movil)
+        layout.addWidget(self.label_patente)
+        layout.addWidget(self.lineEdit_patente)
+        layout.addWidget(self.btnAceptar)
+
+        # Configurar el diseño en la subventana
+        self.setLayout(layout)
+
+    def guardar_movil(self):
+        movil = self.lineEdit_movil.text()
+        patente = self.lineEdit_patente.text()
+        print(movil,patente)
+        sql = AltaGuardia()
+        sql.alta_movil(movil, patente)

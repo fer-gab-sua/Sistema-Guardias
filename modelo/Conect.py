@@ -87,7 +87,44 @@ class AltaGuardia(ConexionConBase):
         finally:
             self.cerrar_conexion()
 
-# Ejemplo de uso de la clase
+    def patente(self,base):
+        try:
+            self.conectar()
+            cursor = self.conn.cursor()
+            consulta = """
+                        SELECT mov_txt_patente
+                        FROM Moviles
+                        WHERE mov_txt_movil = (?)
+                    """
+            cursor.execute(consulta,base)
+            resultado = cursor.fetchall()
+            return resultado
+            
+        except pyodbc.Error as ex:
+            print("Error al ejecutar la consulta:", ex)
+            return None
+        finally:
+            self.cerrar_conexion()
+
+    def alta_movil(self,movil,patente):
+        print(movil,patente)
+        try:
+            self.conectar()
+            cursor = self.conn.cursor()
+            consulta = """
+                        SELECT mov_txt_patente
+                        FROM Moviles
+                        WHERE mov_txt_movil = (?)
+                    """
+            cursor.execute(consulta,)
+            resultado = cursor.fetchall()
+            return resultado
+            
+        except pyodbc.Error as ex:
+            print("Error al ejecutar la consulta:", ex)
+            return None
+        finally:
+            self.cerrar_conexion()
 if __name__ == "__main__":
     consultasql = ConsultasSql()
     resultado = consultasql.trae_permisos("coordinacionMoviles")
