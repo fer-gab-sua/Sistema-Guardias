@@ -25,20 +25,17 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         # Configuración del QTableView
         header_labels = ['Base', 'Patente']
         
-
-
-
-
-
         # Crear el modelo de ítems
         self.model = QStandardItemModel()
         self.model.setHorizontalHeaderLabels(header_labels)
-        
 
         self.fill_adg_tblv_1()
         # Asignar el modelo a la QTableView
         self.adg_tblv_1.setModel(self.model)
-        
+        #lleno el combo box
+        self.fill_adg_comb_base()
+        self.adg_comb_basecurrentIndexChanged.connect(self.metodo_seleccion)
+
 
 
     def permisos(self,usuario):
@@ -77,3 +74,13 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
             
             row_items = [QStandardItem(str(dato)) for dato in fila]
             self.model.appendRow(row_items)
+
+    def fill_adg_comb_base(self):
+        bases_datos = self.sqlaltaguardia.fill_Bases_sql()
+
+        for item in bases_datos:
+            self.adg_comb_base.addItem(item[0])
+
+    def select_adg_comb_base(self):
+        selected_text = self.adg_comb_base.currentText()
+        print(f"Elemento seleccionado: {selected_text}")
