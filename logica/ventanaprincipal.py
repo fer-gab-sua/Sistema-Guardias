@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets, uic 
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox
+from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit 
+from PyQt5.QtCore import QDate
 
 from modelo.Conect import ConsultasSql , AltaGuardia
 
@@ -141,15 +142,19 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
     """########## TODO ALTA DE GUARDIAS ####################### PARAMEDICO"""
 
     def fill_adg_tblv_2(self,):
-        
-        # Asignar el modelo a la QTableView
-        self.adg_tblv_2.setModel(self.model_paramedicos)
-
         bases_datos = self.sqlaltaguardia.fill_paramedicos_sql()
+        self.model_paramedicos.clear()
         # Configuración del QTableView
-        header_labels_paramedicos = ['Legajo', 'Nombre' , 'Apellido' , 'Licencia Venc.'] 
-        # Crear el modelo de ítems
+        header_labels_paramedicos = ['Legajo', 'Nombre' , 'Apellido' , 'Licencia Venc.']  
         self.model_paramedicos.setHorizontalHeaderLabels(header_labels_paramedicos)
+
+        
+
+        
+        # Configuración del QTableView
+
+        # Crear el modelo de ítems
+        
 
         for tupla in bases_datos:
             fila = tupla 
@@ -184,7 +189,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         subventanapara = SubVentanaAddParamedico()
         subventanapara.exec_()
         # Después de que se cierra la subventana, actualiza la tabla
-        self.fill_adg_tblv_1()
+        self.fill_adg_tblv_2()
 
     def delparamedico(self):
         pass
@@ -238,12 +243,13 @@ class SubVentanaAddParamedico(QDialog):
         self.label_apellido = QLabel("Apellido:")
         self.lineEdit_apellido = QLineEdit(self)
 
-        self.label_fechavencimiento = QLabel("FechaVencimiento:")
-        self.lineEdit_fechavencimiento = QLineEdit(self)
-
+        self.label_fechavencimiento = QLabel("Fecha de Vencimiento:")
+        self.dateEdit_fechavencimiento = QDateEdit(self)
+        self.dateEdit_fechavencimiento.setDate(QDate.currentDate())  # Establecer la fecha actual como valor predeterminado
+        self.dateEdit_fechavencimiento.setDisplayFormat("yyyy-MM-dd")  # Formato de visualización de la fecha
 
         self.btnAceptar = QPushButton("Aceptar")
-        self.btnAceptar.clicked.connect(self.guardar_movil)
+        self.btnAceptar.clicked.connect(self.guardar_paramedico)
 
         # Crear el diseño de la subventana
         layout = QVBoxLayout()
@@ -254,19 +260,18 @@ class SubVentanaAddParamedico(QDialog):
         layout.addWidget(self.label_apellido)
         layout.addWidget(self.lineEdit_apellido)
         layout.addWidget(self.label_fechavencimiento)
-        layout.addWidget(self.lineEdit_fechavencimiento)
-
-
-
+        layout.addWidget(self.dateEdit_fechavencimiento)
         layout.addWidget(self.btnAceptar)
 
         # Configurar el diseño en la subventana
         self.setLayout(layout)
 
-    def guardar_movil(self):
-        movil = self.lineEdit_movil.text()
-        patente = self.lineEdit_patente.text()
-        print(movil,patente)
+    def guardar_paramedico(self):
+        legajo = self.lineEdit_legajo.text()
+        nombre = self.lineEdit_nombre.text()
+        apellido = self.lineEdit_apellido.text()
+        fechavencimiento = self.dateEdit_fechavencimiento.date().toString("yyyy-MM-dd")
+
         sql = AltaGuardia()
-        sql.alta_movil(movil, patente)
+        sql.alta_paramedico(legajo, nombre, apellido, fechavencimiento)
         self.accept()

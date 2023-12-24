@@ -89,3 +89,7 @@ class AltaGuardia(ConexionConBase):
         consulta = "SELECT par_int_legajo, par_txt_nombre, par_txt_apellido, par_fch_vencimientolicencia FROM Paramedicos WHERE par_int_legajo = (?)"
         return self.ejecutar_consulta(consulta, legajo)
 
+    def alta_paramedico(self, legajo,nombre,apellido,fechavencimiento):
+        consulta = "INSERT INTO [GuardiasMedicas].[dbo].[Paramedicos] ([par_int_legajo],[par_txt_nombre],[par_txt_apellido],[par_fch_vencimientolicencia]) VALUES (?, ?, ?, ?)"
+        self.ejecutar_consulta(consulta, legajo,nombre,apellido,fechavencimiento)
+
