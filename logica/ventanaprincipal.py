@@ -106,8 +106,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
     def addbase(self,):
         subventanamov = SubVentanaAddMovil()
         subventanamov.exec_()
-        # Después de que se cierra la subventana, actualiza el combo box y la tabla
-        self.fill_adg_comb_base()
+        # Después de que se cierra la subventana, actualiza la tabla
         self.fill_adg_tblv_1()
 
     def delbase(self):
@@ -182,7 +181,10 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
             self.adg_tlbox_1.setItemText(1,"Paramedico")
 
     def addparamedico(self):
-        pass
+        subventanapara = SubVentanaAddParamedico()
+        subventanapara.exec_()
+        # Después de que se cierra la subventana, actualiza la tabla
+        self.fill_adg_tblv_1()
 
     def delparamedico(self):
         pass
@@ -222,3 +224,49 @@ class SubVentanaAddMovil(QDialog):
         sql.alta_movil(movil, patente)
         self.accept()
 
+class SubVentanaAddParamedico(QDialog):
+    def __init__(self):
+        super(SubVentanaAddParamedico, self).__init__()
+
+        # Crear widgets para la subventana
+        self.label_legajo = QLabel("Legajo:")
+        self.lineEdit_legajo = QLineEdit(self)
+
+        self.label_nombre = QLabel("Nombre:")
+        self.lineEdit_nombre = QLineEdit(self)
+
+        self.label_apellido = QLabel("Apellido:")
+        self.lineEdit_apellido = QLineEdit(self)
+
+        self.label_fechavencimiento = QLabel("FechaVencimiento:")
+        self.lineEdit_fechavencimiento = QLineEdit(self)
+
+
+        self.btnAceptar = QPushButton("Aceptar")
+        self.btnAceptar.clicked.connect(self.guardar_movil)
+
+        # Crear el diseño de la subventana
+        layout = QVBoxLayout()
+        layout.addWidget(self.label_legajo)
+        layout.addWidget(self.lineEdit_legajo)
+        layout.addWidget(self.label_nombre)
+        layout.addWidget(self.lineEdit_nombre)
+        layout.addWidget(self.label_apellido)
+        layout.addWidget(self.lineEdit_apellido)
+        layout.addWidget(self.label_fechavencimiento)
+        layout.addWidget(self.lineEdit_fechavencimiento)
+
+
+
+        layout.addWidget(self.btnAceptar)
+
+        # Configurar el diseño en la subventana
+        self.setLayout(layout)
+
+    def guardar_movil(self):
+        movil = self.lineEdit_movil.text()
+        patente = self.lineEdit_patente.text()
+        print(movil,patente)
+        sql = AltaGuardia()
+        sql.alta_movil(movil, patente)
+        self.accept()
