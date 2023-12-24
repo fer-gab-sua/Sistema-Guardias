@@ -68,7 +68,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="alt_grd_movil">
         <property name="geometry">
@@ -93,16 +93,6 @@
          </property>
          <property name="text">
           <string>Base</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="adg_comb_base">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>10</y>
-           <width>131</width>
-           <height>22</height>
-          </rect>
          </property>
         </widget>
         <widget class="QLineEdit" name="adg_let_patente">
@@ -202,8 +192,8 @@
           <rect>
            <x>20</x>
            <y>140</y>
-           <width>391</width>
-           <height>192</height>
+           <width>401</width>
+           <height>501</height>
           </rect>
          </property>
          <property name="editTriggers">
@@ -211,6 +201,19 @@
          </property>
          <property name="showGrid">
           <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="adg_let_base">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>10</y>
+           <width>120</width>
+           <height>20</height>
+          </rect>
          </property>
         </widget>
        </widget>
@@ -279,16 +282,6 @@
            <normaloff>C:/Users/ELTIGRE/Python/Python39/Lib/site-packages/PySide2</normaloff>C:/Users/ELTIGRE/Python/Python39/Lib/site-packages/PySide2</iconset>
          </property>
         </widget>
-        <widget class="QTableWidget" name="adg_tblv_2">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>190</y>
-           <width>431</width>
-           <height>451</height>
-          </rect>
-         </property>
-        </widget>
         <widget class="QWidget" name="gridLayoutWidget_3">
          <property name="geometry">
           <rect>
@@ -314,13 +307,18 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QDateEdit" name="adg_date_licenciaparamedico"/>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="adg_comb_nameparamedico"/>
+           <widget class="QDateEdit" name="adg_date_licenciaparamedico">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="adg_let_legajoparamedico"/>
+           <widget class="QLineEdit" name="adg_let_legajoparamedico">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="adg_lbl_5">
@@ -329,7 +327,24 @@
             </property>
            </widget>
           </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="adg_let_nombreyapellido">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
+        </widget>
+        <widget class="QTableView" name="adg_tblv_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>190</y>
+           <width>431</width>
+           <height>451</height>
+          </rect>
+         </property>
         </widget>
        </widget>
        <widget class="QWidget" name="alt_grd_fechas">
@@ -1250,8 +1265,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>441</width>
-          <height>587</height>
+          <width>100</width>
+          <height>30</height>
          </rect>
         </property>
         <attribute name="label">
@@ -1744,7 +1759,6 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>adg_comb_base</tabstop>
   <tabstop>adg_let_patente</tabstop>
   <tabstop>adg_btn_addbase</tabstop>
   <tabstop>adg_btn_delbase</tabstop>
