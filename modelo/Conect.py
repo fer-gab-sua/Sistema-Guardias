@@ -101,12 +101,13 @@ class AltaGuardia(ConexionConBase):
         consulta = """SELECT grd_int_id , mov_txt_movil , par_txt_apellido , par_txt_nombre , grd_fyh_inicio , grd_fyh_fin
                 FROM Guardias 
                 JOIN Paramedicos on grd_int_idparamedico = par_int_id
-                JOIN Moviles on grd_int_idmovil = mov_int_id"""
+                JOIN Moviles on grd_int_idmovil = mov_int_id
+                WHERE grd_txt_estado = 'incompleta' OR grd_txt_estado = 'completa'"""
         return self.ejecutar_consulta(consulta)
 
     def alta_guardia_movil(self,idmovil,idparamedico,fyh_inicio,fyh_fin):
-        consulta = "INSERT INTO [GuardiasMedicas].[dbo].[Guardias] ([grd_int_idmovil],[grd_int_idparamedico],[grd_fyh_inicio],[grd_fyh_fin]) VALUES (?, ?, ?, ?)"
-        self.ejecutar_consulta(consulta, idmovil,idparamedico,fyh_inicio,fyh_fin)
+        consulta = "INSERT INTO [GuardiasMedicas].[dbo].[Guardias] ([grd_int_idmovil],[grd_int_idparamedico],[grd_fyh_inicio],[grd_fyh_fin],[grd_txt_estado]) VALUES (?, ?, ?, ? , ?)"
+        self.ejecutar_consulta(consulta, idmovil,idparamedico,fyh_inicio,fyh_fin,"incompleta")
 
 
         

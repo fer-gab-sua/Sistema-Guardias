@@ -28,6 +28,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.fill_adg_tblv_1()
         # Asignar el modelo a la QTableView
         self.adg_tblv_1.setModel(self.model_moviles)
+        self.adg_tblv_1.resizeColumnsToContents()
         #conecto el dobleclick de moviles a la funcion
         self.adg_tblv_1.doubleClicked.connect(self.select_movil)
         #conecto el add y del de la base de moviles
@@ -39,6 +40,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.fill_adg_tblv_2()
         self.adg_tblv_2.setModel(self.model_paramedicos)
         self.adg_tblv_2.doubleClicked.connect(self.select_paramedico)
+        self.adg_tblv_2.resizeColumnsToContents()
         #conecto el add y del de la base de paramedicos
         self.adg_btn_addparamedico.clicked.connect(lambda:self.addparamedico())
         self.adg_btn_delparamedico.clicked.connect(lambda:self.delparamedico())
@@ -53,6 +55,15 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.adg_tblv_3.setModel(self.model_guardias_moviles)
         self.adg_tblv_3.resizeColumnsToContents()
 
+        #Segunda pantalla 2 - INGRSO MEDICO - 
+        self.model_medicos = QStandardItemModel()
+        self.fill_idm_tlbv_1()
+        self.idm_tblv_1.setModel(self.model_medicos)
+        self.idm_tblv_1.resizeColumnsToContents()
+        self.idm_tblv_1.doubleClicked.connect(self.select_idm_tblv_1)
+
+
+    """######### FUNCIONES GENERALES#####################"""
     def permisos(self,usuario):
         if usuario == "Admin":
             self.actionAlta_de_Guardias.setEnabled(True)
@@ -81,19 +92,23 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
                     print("permiso 5")
                     self.actionHistorial.setEnabled(True)
 
+    def fill_table(self,base_datos,modelo,header_labels):
+        modelo.clear()
+
+        for tupla in base_datos:
+            fila = tupla
+            row_items = [QStandardItem(str(dato)) for dato in fila]
+            modelo.appendRow(row_items)
+            modelo.setHorizontalHeaderLabels(header_labels)
+
+
     """########## TODO ALTA DE GUARDIAS ####################### BASE"""
     def fill_adg_tblv_1(self,):
         bases_datos = self.sqlaltaguardia.fill_Bases_sql()
-        self.model_moviles.clear()
         # Configuración del QTableView
-        header_labels = ['Id' , 'Base', 'Patente']
-        self.model_moviles.setHorizontalHeaderLabels(header_labels)
-
-        for tupla in bases_datos:
-            fila = tupla 
-            
-            row_items = [QStandardItem(str(dato)) for dato in fila]
-            self.model_moviles.appendRow(row_items)
+        header_labels_base = ['Id' , 'Base', 'Patente']
+        self.fill_table(bases_datos,self.model_moviles,header_labels_base)
+        self.adg_tblv_1.resizeColumnsToContents()
 
     def select_movil(self):
         indice_seleccionado = self.adg_tblv_1.currentIndex()
@@ -127,7 +142,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         # Verificar si hay una selección válida
         if indice_seleccionado.isValid():
             # Obtener el valor de la primera columna (patente) en la fila seleccionada
-            base = self.model_moviles.item(indice_seleccionado.row(), 0).text()
+            base = self.model_moviles.item(indice_seleccionado.row(), 1).text()
             print(base)
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Question)
@@ -153,24 +168,10 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
 
     def fill_adg_tblv_2(self,):
         bases_datos = self.sqlaltaguardia.fill_paramedicos_sql()
-        self.model_paramedicos.clear()
         # Configuración del QTableView
-        header_labels_paramedicos = ['Id','Legajo', 'Nombre' , 'Apellido' , 'Licencia Venc.']  
-        self.model_paramedicos.setHorizontalHeaderLabels(header_labels_paramedicos)
-
-        
-
-        
-        # Configuración del QTableView
-
-        # Crear el modelo de ítems
-        
-
-        for tupla in bases_datos:
-            fila = tupla 
-            
-            row_items = [QStandardItem(str(dato)) for dato in fila]
-            self.model_paramedicos.appendRow(row_items)
+        header_labels_paramedico = ['Id','Legajo', 'Nombre' , 'Apellido' , 'Licencia Venc.']  
+        self.fill_table(bases_datos,self.model_paramedicos,header_labels_paramedico)
+        self.adg_tblv_2.resizeColumnsToContents()
 
     def select_paramedico(self):
         indice_seleccionado = self.adg_tblv_2.currentIndex()
@@ -210,7 +211,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         # Verificar si hay una selección válida
         if indice_seleccionado.isValid():
             # Obtener el valor de la primera columna (patente) en la fila seleccionada
-            paramedico = self.model_paramedicos.item(indice_seleccionado.row(), 0).text()
+            paramedico = self.model_paramedicos.item(indice_seleccionado.row(), 1).text()
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Question)
             msg.setText(f"¿Estás seguro de eliminar el registro con el legajo {paramedico}?")
@@ -252,29 +253,26 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         fyh_fin = QDateTime(fecha_fin,hora_fin).toString("yyyy-MM-dd hh:mm:ss")
         
         self.sqlaltaguardia.alta_guardia_movil(idmovil,idparamedico,fyh_inicio,fyh_fin)
+        self.fill_adg_tblv_3()
         
-
     def fill_adg_tblv_3(self):
         bases_datos = self.sqlaltaguardia.fill_table_guard_adg()
-        self.model_guardias_moviles.clear()
         # Configuración del QTableView
-        header_labels_paramedicos = ['Id','Base', 'Apellido P.' , 'Nombre P.', 'Fecha Inicio' , 'Fecha Fin']  
-        self.model_guardias_moviles.setHorizontalHeaderLabels(header_labels_paramedicos)
+        header_labels_alta_guardia = ['Id','Base', 'Apellido P.' , 'Nombre P.', 'Fecha Inicio' , 'Fecha Fin']  
+        self.fill_table(bases_datos,self.model_guardias_moviles,header_labels_alta_guardia)
+        self.adg_tblv_3.resizeColumnsToContents()
 
-        
-
-        
+    """########## TODO ALTA DE MEDICO ####################### """
+    def fill_idm_tlbv_1(self):
+        bases_datos = self.sqlaltaguardia.fill_table_guard_adg()
         # Configuración del QTableView
+        header_labels_alta_guardia = ['Id','Base', 'Apellido P.' , 'Nombre P.', 'Fecha Inicio' , 'Fecha Fin']  
+        self.fill_table(bases_datos,self.model_medicos,header_labels_alta_guardia)
+        self.adg_tblv_3.resizeColumnsToContents()
 
-        # Crear el modelo de ítems
-        
+    def select_idm_tblv_1(self):
+        self.idm_int_idguardia.setText(str("20"))
 
-        for tupla in bases_datos:
-            fila = tupla 
-            
-            row_items = [QStandardItem(str(dato)) for dato in fila]
-            self.model_guardias_moviles.appendRow(row_items)
-        
 
 class SubVentanaAddMovil(QDialog):
     def __init__(self):
@@ -283,10 +281,8 @@ class SubVentanaAddMovil(QDialog):
         # Crear widgets para la subventana
         self.label_movil = QLabel("Movil:")
         self.lineEdit_movil = QLineEdit(self)
-
         self.label_patente = QLabel("Patente:")
         self.lineEdit_patente = QLineEdit(self)
-
         self.btnAceptar = QPushButton("Aceptar")
         self.btnAceptar.clicked.connect(self.guardar_movil)
 
