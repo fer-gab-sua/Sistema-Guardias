@@ -56,9 +56,9 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.adg_tblv_3.resizeColumnsToContents()
 
         #Segunda pantalla 2 - INGRSO MEDICO - 
-        self.model_medicos = QStandardItemModel()
+        self.model_medicos_guardias = QStandardItemModel()
         self.fill_idm_tlbv_1()
-        self.idm_tblv_1.setModel(self.model_medicos)
+        self.idm_tblv_1.setModel(self.model_medicos_guardias)
         self.idm_tblv_1.resizeColumnsToContents()
         self.idm_tblv_1.doubleClicked.connect(self.select_idm_tblv_1)
 
@@ -267,11 +267,26 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         bases_datos = self.sqlaltaguardia.fill_table_guard_adg()
         # Configuración del QTableView
         header_labels_alta_guardia = ['Id','Base', 'Apellido P.' , 'Nombre P.', 'Fecha Inicio' , 'Fecha Fin']  
-        self.fill_table(bases_datos,self.model_medicos,header_labels_alta_guardia)
-        self.adg_tblv_3.resizeColumnsToContents()
+        self.fill_table(bases_datos,self.model_medicos_guardias,header_labels_alta_guardia)
+        self.idm_tblv_1.resizeColumnsToContents()
 
     def select_idm_tblv_1(self):
-        self.idm_int_idguardia.setText(str("20"))
+        indice_seleccionado = self.idm_tblv_1.currentIndex()
+        id_guardia = self.model_medicos_guardias.item(indice_seleccionado.row(), 0).text()
+        base = self.model_medicos_guardias.item(indice_seleccionado.row(), 1).text()
+        paramedico = self.model_medicos_guardias.item(indice_seleccionado.row(), 2).text()
+        enfermero = self.model_medicos_guardias.item(indice_seleccionado.row(), 3).text()
+        fecha_ini = self.model_medicos_guardias.item(indice_seleccionado.row(), 4).text()
+        fecha_fin = self.model_medicos_guardias.item(indice_seleccionado.row(), 4).text()
+                
+        if id_guardia:
+            # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
+            self.idm_int_idguardia.setText(str(id_guardia))
+            self.idm_txt_paramedico.setText(str(paramedico))
+            self.idm_txt_enfermero.setText(str(enfermero))
+        else:
+            # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
+            pass
 
 
 class SubVentanaAddMovil(QDialog):
