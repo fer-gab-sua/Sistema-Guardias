@@ -68,7 +68,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="alt_grd_movil">
         <property name="geometry">
@@ -365,54 +365,18 @@
         <widget class="QCalendarWidget" name="adg_cal_1">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>50</y>
+           <x>30</x>
+           <y>140</y>
            <width>321</width>
            <height>183</height>
           </rect>
          </property>
         </widget>
-        <widget class="QDateTimeEdit" name="adg_fyh_inicio">
-         <property name="geometry">
-          <rect>
-           <x>150</x>
-           <y>20</y>
-           <width>181</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLabel" name="adg_lbl_9">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>250</y>
-           <width>101</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Duracion de Guardia</string>
-         </property>
-        </widget>
-        <widget class="QTimeEdit" name="adg_time_durguardia">
-         <property name="geometry">
-          <rect>
-           <x>120</x>
-           <y>250</y>
-           <width>61</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="calendarPopup">
-          <bool>true</bool>
-         </property>
-        </widget>
         <widget class="QLabel" name="adg_lbl_8">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>20</y>
+           <x>20</x>
+           <y>100</y>
            <width>111</width>
            <height>16</height>
           </rect>
@@ -424,37 +388,159 @@
         <widget class="QLabel" name="adg_lbl_10">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>290</y>
+           <x>30</x>
+           <y>340</y>
            <width>91</width>
-           <height>16</height>
+           <height>21</height>
           </rect>
          </property>
          <property name="text">
           <string>Fecha de fin</string>
          </property>
         </widget>
-        <widget class="QDateTimeEdit" name="adg_fyh_fin">
-         <property name="geometry">
-          <rect>
-           <x>80</x>
-           <y>290</y>
-           <width>101</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
         <widget class="QPushButton" name="adg_btn_addguardia">
          <property name="geometry">
           <rect>
            <x>320</x>
-           <y>330</y>
+           <y>590</y>
            <width>101</width>
            <height>23</height>
           </rect>
          </property>
          <property name="text">
           <string>Agregar</string>
+         </property>
+        </widget>
+        <widget class="QDateEdit" name="adg_fech_inicio">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>100</y>
+           <width>110</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QTimeEdit" name="adg_hor_inicio">
+         <property name="geometry">
+          <rect>
+           <x>220</x>
+           <y>100</y>
+           <width>61</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QDateEdit" name="adg_fech_fin">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>340</y>
+           <width>110</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QTimeEdit" name="adg_hor_fin">
+         <property name="geometry">
+          <rect>
+           <x>210</x>
+           <y>340</y>
+           <width>61</width>
+           <height>22</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>68</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Id Movil</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="adg_int_idmovil">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>10</y>
+           <width>51</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_4">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>10</y>
+           <width>95</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Descripcion Movil</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="adg_txt_movil">
+         <property name="geometry">
+          <rect>
+           <x>200</x>
+           <y>10</y>
+           <width>119</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>40</y>
+           <width>68</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Id Paramedico</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="adg_int_idparamedico">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>40</y>
+           <width>41</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_5">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>40</y>
+           <width>95</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Apellido Paramedico</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="adg_txt_paramedico">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>40</y>
+           <width>101</width>
+           <height>20</height>
+          </rect>
          </property>
         </widget>
        </widget>
@@ -475,16 +561,6 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QTableWidget" name="adg_tblv_3">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>50</y>
-         <width>651</width>
-         <height>661</height>
-        </rect>
-       </property>
-      </widget>
       <widget class="QCommandLinkButton" name="adg_btn_delguardiaparamedico">
        <property name="geometry">
         <rect>
@@ -522,6 +598,16 @@
        </property>
        <property name="text">
         <string>Guardias Cargadas</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="adg_tblv_3">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>40</y>
+         <width>661</width>
+         <height>631</height>
+        </rect>
        </property>
       </widget>
      </widget>
@@ -1762,12 +1848,8 @@
   <tabstop>adg_let_patente</tabstop>
   <tabstop>adg_btn_addbase</tabstop>
   <tabstop>adg_btn_delbase</tabstop>
-  <tabstop>adg_fyh_inicio</tabstop>
   <tabstop>adg_cal_1</tabstop>
-  <tabstop>adg_time_durguardia</tabstop>
-  <tabstop>adg_fyh_fin</tabstop>
   <tabstop>adg_btn_addguardia</tabstop>
-  <tabstop>adg_tblv_3</tabstop>
   <tabstop>adg_bnt_editguardiaparamedico</tabstop>
   <tabstop>adg_btn_delguardiaparamedico</tabstop>
  </tabstops>

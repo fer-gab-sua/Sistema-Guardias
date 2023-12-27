@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, uic 
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit 
-from PyQt5.QtCore import QDate
+from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit ,QDateTimeEdit 
+from PyQt5.QtCore import QDate , QTime , QDateTime
 
 from modelo.Conect import ConsultasSql , AltaGuardia
 
@@ -21,8 +21,8 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.actionCabina.triggered.connect(lambda: self.StackedWidget_stwid_1.setCurrentIndex(3))
         self.actionEnfermeros.triggered.connect(lambda: self.StackedWidget_stwid_1.setCurrentIndex(4))
         self.actionHistorial.triggered.connect(lambda: self.StackedWidget_stwid_1.setCurrentIndex(5))
-        #conecto todo lo referido a la primera pantalla 1 - ALTA DE GUARDIA - BASES
-        
+        #primera pantalla 1 - ALTA DE GUARDIA - BASES
+
         # Crear el modelo de ítems para la base
         self.model_moviles = QStandardItemModel()
         self.fill_adg_tblv_1()
@@ -42,6 +42,15 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         #conecto el add y del de la base de paramedicos
         self.adg_btn_addparamedico.clicked.connect(lambda:self.addparamedico())
         self.adg_btn_delparamedico.clicked.connect(lambda:self.delparamedico())
+
+        #conecto todo lo referido a la primera pantalla 1 - ALTA DE GUARDIA - FECHAS
+        self.adg_cal_1.selectionChanged.connect(self.select_fecha)
+        self.adg_btn_addguardia.clicked.connect(lambda:self.alta_guardia_movil())
+
+        #llenado de guardias en ALTA DE GUARDIAS - Grilla general
+        self.model_guardias_moviles = QStandardItemModel()
+        self.fill_adg_tblv_3()
+        self.adg_tblv_3.setModel(self.model_guardias_moviles)
 
 
     def permisos(self,usuario):
@@ -77,7 +86,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         bases_datos = self.sqlaltaguardia.fill_Bases_sql()
         self.model_moviles.clear()
         # Configuración del QTableView
-        header_labels = ['Base', 'Patente']
+        header_labels = ['Id' , 'Base', 'Patente']
         self.model_moviles.setHorizontalHeaderLabels(header_labels)
 
         for tupla in bases_datos:
@@ -91,14 +100,16 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         base = self.model_moviles.item(indice_seleccionado.row(), 0).text()
         print(base)
 
-        patente = self.sqlaltaguardia.patente(base)
-
-        if patente:
+        movil_datos = self.sqlaltaguardia.movil_datos(base)
+        print(movil_datos)
+        if movil_datos:
             # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
-            self.adg_let_patente.setText(str(patente[0][0]))
-            titulo_base = (f"Movil: {base}")
+            self.adg_let_patente.setText(str(movil_datos[0][2]))
+            titulo_base = (f"Movil: {movil_datos[0][1]}")
             self.adg_tlbox_1.setItemText(0,titulo_base)
-            self.adg_let_base.setText(str(base))
+            self.adg_let_base.setText(str(movil_datos[0][1]))
+            self.adg_txt_movil.setText(str(movil_datos[0][1]))
+            self.adg_int_idmovil.setText(str(movil_datos[0][0]))
         else:
             # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
             self.adg_let_patente.setText("")
@@ -132,7 +143,6 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
             else:
                 # Si el usuario hizo clic en "No" o cerró la ventana, no hacer nada
                 print("Eliminación cancelada.")
-            self.fill_adg_comb_base()
             self.fill_adg_tblv_1()
         else:
             print("No hay una fila seleccionada")
@@ -145,7 +155,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         bases_datos = self.sqlaltaguardia.fill_paramedicos_sql()
         self.model_paramedicos.clear()
         # Configuración del QTableView
-        header_labels_paramedicos = ['Legajo', 'Nombre' , 'Apellido' , 'Licencia Venc.']  
+        header_labels_paramedicos = ['Id','Legajo', 'Nombre' , 'Apellido' , 'Licencia Venc.']  
         self.model_paramedicos.setHorizontalHeaderLabels(header_labels_paramedicos)
 
         
@@ -164,12 +174,13 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
 
     def select_paramedico(self):
         indice_seleccionado = self.adg_tblv_2.currentIndex()
-        legajo = self.model_paramedicos.item(indice_seleccionado.row(), 0).text()
-        print(legajo)
-        paramedico = self.sqlaltaguardia.paramedicos_datos(legajo)
-        legajo = paramedico[0][0]
-        nombre_apellido = paramedico[0][1] + " " + paramedico[0][2]
-        fecha = paramedico[0][3]
+        id_paramedico = self.model_paramedicos.item(indice_seleccionado.row(), 0).text()
+        paramedico = self.sqlaltaguardia.paramedicos_datos(id_paramedico)
+        id_paramedico = int(paramedico[0][0])
+        print(id_paramedico, "ESTE ES EL DATO")
+        legajo = paramedico[0][1]
+        nombre_apellido = paramedico[0][2] + " " + paramedico[0][3]
+        fecha = paramedico[0][4]
         
         if paramedico:
             # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
@@ -178,6 +189,8 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
             self.adg_let_nombreyapellido.setText(nombre_apellido)
             self.adg_date_licenciaparamedico.setDate(fecha)
             self.adg_tlbox_1.setItemText(1,titulo_paramedico)
+            self.adg_txt_paramedico.setText(nombre_apellido)
+            self.adg_int_idparamedico.setText(str(id_paramedico))
         else:
             # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
             self.adg_let_legajoparamedico.setText("")
@@ -192,9 +205,76 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.fill_adg_tblv_2()
 
     def delparamedico(self):
-        pass
+        # Obtener el índice de la fila seleccionada
+        indice_seleccionado = self.adg_tblv_2.currentIndex()
+        # Verificar si hay una selección válida
+        if indice_seleccionado.isValid():
+            # Obtener el valor de la primera columna (patente) en la fila seleccionada
+            paramedico = self.model_paramedicos.item(indice_seleccionado.row(), 0).text()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Question)
+            msg.setText(f"¿Estás seguro de eliminar el registro con el legajo {paramedico}?")
+            msg.setWindowTitle("Confirmación de eliminación")
+            msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            # Mostrar el cuadro de mensaje y obtener la respuesta del usuario
+            respuesta = msg.exec_()
+            # Procesar la respuesta
+            if respuesta == QMessageBox.Yes:
+                # Si el usuario hizo clic en "Sí", eliminar el registro
+                print(paramedico)
+                self.sqlaltaguardia.borrar_paramedico(int(paramedico))
+            else:
+                # Si el usuario hizo clic en "No" o cerró la ventana, no hacer nada
+                print("Eliminación cancelada.")
+            self.fill_adg_tblv_2()
+        else:
+            print("No hay una fila seleccionada")
+            QMessageBox.warning(self, 'Advertencia', 'Por favor, selecciona una fila antes de intentar borrar.',
+                                QMessageBox.Ok)
 
+    """########## TODO ALTA DE GUARDIAS ####################### FECHAS """
 
+    def select_fecha(self):
+        fecha_seleccionada = self.adg_cal_1.selectedDate()
+        # Establecer el valor del QDate
+        self.adg_fech_inicio.setDate(fecha_seleccionada)
+        self.adg_fech_fin.setDate(fecha_seleccionada)
+    
+    def alta_guardia_movil(self):
+        idmovil = self.adg_int_idmovil.text()
+        idparamedico = self.adg_int_idparamedico.text()
+        fecha_inicio = self.adg_fech_inicio.date()
+        hora_inicio = self.adg_hor_inicio.time()
+        fecha_fin = self.adg_fech_fin.date()
+        hora_fin = self.adg_hor_fin.time()
+
+        fyh_inicio = QDateTime(fecha_inicio,hora_inicio).toString("yyyy-MM-dd hh:mm:ss")
+        fyh_fin = QDateTime(fecha_fin,hora_fin).toString("yyyy-MM-dd hh:mm:ss")
+        
+        self.sqlaltaguardia.alta_guardia_movil(idmovil,idparamedico,fyh_inicio,fyh_fin)
+        
+
+    def fill_adg_tblv_3(self):
+        bases_datos = self.sqlaltaguardia.fill_table_guard_adg()
+        self.model_guardias_moviles.clear()
+        # Configuración del QTableView
+        header_labels_paramedicos = ['Id','Base', 'Apellido Paramedico' , 'Nombre Paramedico']  
+        self.model_guardias_moviles.setHorizontalHeaderLabels(header_labels_paramedicos)
+
+        
+
+        
+        # Configuración del QTableView
+
+        # Crear el modelo de ítems
+        
+
+        for tupla in bases_datos:
+            fila = tupla 
+            
+            row_items = [QStandardItem(str(dato)) for dato in fila]
+            self.model_guardias_moviles.appendRow(row_items)
+        
 
 class SubVentanaAddMovil(QDialog):
     def __init__(self):
