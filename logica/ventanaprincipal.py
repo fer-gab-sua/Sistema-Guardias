@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, uic 
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit ,QDateTimeEdit 
+from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit ,QTableView 
 from PyQt5.QtCore import QDate , QTime , QDateTime
 
 from modelo.Conect import ConsultasSql , AltaGuardia
@@ -51,7 +51,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.model_guardias_moviles = QStandardItemModel()
         self.fill_adg_tblv_3()
         self.adg_tblv_3.setModel(self.model_guardias_moviles)
-
+        self.adg_tblv_3.resizeColumnsToContents()
 
     def permisos(self,usuario):
         if usuario == "Admin":
@@ -258,7 +258,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         bases_datos = self.sqlaltaguardia.fill_table_guard_adg()
         self.model_guardias_moviles.clear()
         # Configuración del QTableView
-        header_labels_paramedicos = ['Id','Base', 'Apellido Paramedico' , 'Nombre Paramedico']  
+        header_labels_paramedicos = ['Id','Base', 'Apellido P.' , 'Nombre P.', 'Fecha Inicio' , 'Fecha Fin']  
         self.model_guardias_moviles.setHorizontalHeaderLabels(header_labels_paramedicos)
 
         

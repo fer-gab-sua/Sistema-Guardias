@@ -609,7 +609,14 @@
          <height>631</height>
         </rect>
        </property>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>true</bool>
+       </attribute>
       </widget>
+      <zorder>adg_tblv_3</zorder>
+      <zorder>adg_btn_delguardiaparamedico</zorder>
+      <zorder>adg_bnt_editguardiaparamedico</zorder>
+      <zorder>adg_lbl_11</zorder>
      </widget>
      <widget class="QLabel" name="adg_lbl_1">
       <property name="geometry">

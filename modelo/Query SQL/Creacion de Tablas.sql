@@ -43,8 +43,8 @@ BEGIN
 	grd_int_idparamedico INT,
 	grd_int_idmedico INT,
 	grd_int_idenfermero INT,
-	grd_fyh_inicio DATE,
-	grd_fyh_fin DATE,
+	grd_fyh_inicio DATETIME,
+	grd_fyh_fin DATETIME,
 	grd_int_duracionguardiahs INT,
 	grd_txt_observaciones NVARCHAR(120),
 	grd_txt_estado NVARCHAR(20)
