@@ -3,7 +3,7 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit 
 from PyQt5.QtCore import QDate , QDateTime
 
-from modelo.Conect import ConsultasSql , AltaGuardiaMovilParamedico, AltaGuardiasMedicos
+from modelo.Conect import ConsultasSql , AltaGuardiaMovilParamedico, AltaGuardiasMedicos , AltaGuardiasEnfermero
 
 
 class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
@@ -12,6 +12,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.consultasql = ConsultasSql()
         self.sqlaltaguardia_paramedico = AltaGuardiaMovilParamedico()
         self.sqlaltaguardia_medicos = AltaGuardiasMedicos()
+        self.sqlaltaguardia_enfermero = AltaGuardiasEnfermero()
         uic.loadUi('vista/pantalla.ui', self)
         self.setWindowTitle("Pantalla de guadias")
         #logica de usuarios:
@@ -73,8 +74,28 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
 
         #Segunda pantalla 2 - asignarmedico
         self.idm_btn_add_medico.clicked.connect(self.asignar_medico)
+        self.idm_btn_addaltamedico.clicked.connect(lambda:self.alta_medicos())
+        self.idm_btn_delaltamedico.clicked.connect(self.delmedico)
 
+        #Segunda pantalla 3 - INGRSO Enfermero - 
+        self.model_enfermero_guardias = QStandardItemModel()
+        self.fill_ide_tlbv_1()
+        self.ide_tlbv_1.setModel(self.model_enfermero_guardias)
+        self.ide_tlbv_1.resizeColumnsToContents()
+        #self.ide_tlbv_1.doubleClicked.connect(self.select_ide_tblv_1)
+        
+        #Segunda pantalla 2 - BASE DE MEDICOS - 
+        self.model_enfermero_base = QStandardItemModel()
+        self.fill_ide_tlbv_2()
+        self.ide_tlbv_2.setModel(self.model_enfermero_base)
+        self.ide_tlbv_2.resizeColumnsToContents()
+        #self.ide_tblv_2.doubleClicked.connect(self.select_ide_tblv_2)
+        self.ide_txt_apellidosearch.textChanged.connect(self.search_enfermero)
 
+        #Segunda pantalla 2 - asignarmedico
+        #self.ide_btn_add_medico.clicked.connect(self.asignar_enfermero)
+        #self.ide_btn_addaltamedico.clicked.connect(lambda:self.alta_enfermero())
+        #self.ide_btn_delaltamedico.clicked.connect(self.delenfermero)
     """######### FUNCIONES GENERALES#####################"""
     def permisos(self,usuario):
         if usuario == "Admin":
@@ -105,13 +126,16 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
                     self.actionHistorial.setEnabled(True)
 
     def fill_table(self,base_datos,modelo,header_labels):
-        modelo.clear()
+        if base_datos:
+            modelo.clear()
 
-        for tupla in base_datos:
-            fila = tupla
-            row_items = [QStandardItem(str(dato)) for dato in fila]
-            modelo.appendRow(row_items)
-            modelo.setHorizontalHeaderLabels(header_labels)
+            for tupla in base_datos:
+                fila = tupla
+                row_items = [QStandardItem(str(dato)) for dato in fila]
+                modelo.appendRow(row_items)
+                modelo.setHorizontalHeaderLabels(header_labels)
+        else:
+            print("base d datos vacia")
 
 
     """########## ALTA DE GUARDIAS ####################### BASE"""
@@ -276,7 +300,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
 
     """########## ALTA DE GUARDIAS ####################### MEDICOS """
     def fill_idm_tlbv_2(self):
-        bases_datos = self.sqlaltaguardia_medicos.fill_table_medicos_idm()
+        bases_datos = self.sqlaltaguardia_medicos.fill_table_guard_idm()
         # Configuración del QTableView
         header_labels_alta_medicos = ['Id','Nombre', 'Apellido' , 'Matricula']  
         self.fill_table(bases_datos,self.model_medicos_base,header_labels_alta_medicos)
@@ -355,7 +379,162 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
                 self.sqlaltaguardia_medicos.to_assign_medico(id_medico,id_guardia)
                 self.fill_idm_tlbv_1()
 
+    def alta_medicos(self):
+        subventanapara = SubVentanaAddMedico()
+        subventanapara.exec_()
+        # Después de que se cierra la subventana, actualiza la tabla
+        self.fill_idm_tlbv_2()
+
+    def delmedico(self):
+        # Obtener el índice de la fila seleccionada
+        indice_seleccionado = self.idm_tblv_2.currentIndex()
+        # Verificar si hay una selección válida
+        if indice_seleccionado.isValid():
+            # Obtener el valor de la primera columna (patente) en la fila seleccionada
+            medico = self.model_medicos_base.item(indice_seleccionado.row(), 0).text()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Question)
+            msg.setText(f"¿Estás seguro de eliminar el registro con el id {medico}?")
+            msg.setWindowTitle("Confirmación de eliminación")
+            msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            # Mostrar el cuadro de mensaje y obtener la respuesta del usuario
+            respuesta = msg.exec_()
+            # Procesar la respuesta
+            if respuesta == QMessageBox.Yes:
+                # Si el usuario hizo clic en "Sí", eliminar el registro
+                print(medico)
+                self.sqlaltaguardia_medico.borrar_paramedico(int(medico))
+            else:
+                # Si el usuario hizo clic en "No" o cerró la ventana, no hacer nada
+                print("Eliminación cancelada.")
+            self.fill_adg_tblv_2()
+        else:
+            print("No hay una fila seleccionada")
+            QMessageBox.warning(self, 'Advertencia', 'Por favor, selecciona una fila antes de intentar borrar.',
+                                QMessageBox.Ok)
+
     """########## ALTA DE GUARDIAS ####################### ENFERMERO """
+
+    def fill_ide_tlbv_1(self):
+        bases_datos = self.sqlaltaguardia_enfermero.fill_table_guard_ide()
+        # Configuración del QTableView
+        header_labels_alta_guardiaenfermero = ['Id','Base', 'Paramedico', 'Fecha Inicio' , 'Fecha Fin', 'Medico','Enfermero']  
+        self.fill_table(bases_datos,self.model_enfermero_guardias,header_labels_alta_guardiaenfermero)
+        self.ide_tlbv_1.resizeColumnsToContents()
+
+    def fill_ide_tlbv_2(self):
+        bases_datos = self.sqlaltaguardia_enfermero.fill_table_enfermero_ide()
+        print(bases_datos)
+        # Configuración del QTableView
+        header_labels_alta_enfermero = ['Id','Nombre', 'Apellido' , 'Matricula']  
+        self.fill_table(bases_datos,self.model_enfermero_base,header_labels_alta_enfermero)
+        self.idm_tblv_2.resizeColumnsToContents()
+    
+    def search_enfermero(self):
+        if self.ide_txt_apellidosearch:
+            valor = self.ide_txt_apellidosearch.text()
+            bases_datos = self.sqlaltaguardia_enfermero.fill_table_enfermero_idm_search(valor)
+            # Configuración del QTableView
+            header_labels_alta_enfermero = ['Id','Nombre', 'Apellido' , 'Matricula']  
+            self.fill_table(bases_datos,self.model_enfermero_base,header_labels_alta_enfermero)
+            self.idm_tblv_2.resizeColumnsToContents()
+        else: 
+            self.fill_ide_tlbv_2()
+    """
+    def select_ide_tblv_2(self):
+        indice_seleccionado = self.idm_tblv_2.currentIndex()
+        id_medico = self.model_medicos_base.item(indice_seleccionado.row(), 0).text()
+        medico_nombre = self.model_medicos_base.item(indice_seleccionado.row(), 1).text()
+        medico_apellido = self.model_medicos_base.item(indice_seleccionado.row(), 2).text()
+        
+        if id_medico:
+            # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
+            self.idm_int_idmedico_ingreso.setText(str(id_medico))
+            medico = (medico_nombre + " " + medico_apellido)
+            self.idm_txt_medico_ingreso.setText(str(medico))
+            self.idm_tlbox_1.setItemText(0,str("Medico: "+medico))
+
+        else:
+            # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
+            self.idm_tlbox_1.setItemText(0,str("Medico: "))
+
+
+
+    def select_idm_tblv_1(self):
+        indice_seleccionado = self.idm_tblv_1.currentIndex()
+        id_guardia = self.model_medicos_guardias.item(indice_seleccionado.row(), 0).text()
+        base = self.model_medicos_guardias.item(indice_seleccionado.row(), 1).text()
+        paramedico = self.model_medicos_guardias.item(indice_seleccionado.row(), 2).text()
+        fecha_ini = self.model_medicos_guardias.item(indice_seleccionado.row(), 3).text()
+        fecha_fin = self.model_medicos_guardias.item(indice_seleccionado.row(), 4).text()
+                
+        if id_guardia:
+            # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
+            self.idm_int_idguardia.setText(str(id_guardia))
+            self.idm_txt_base.setText(str(base))
+            self.idm_txt_paramedico.setText(str(paramedico))
+            self.idm_txt_enfermero.setText(str(""))
+            fecha_hora_ini = QDateTime.fromString(fecha_ini, "yyyy-MM-dd hh:mm:ss")
+            self.idm_fyh_inicio.setDateTime(fecha_hora_ini)
+            fecha_hora_fin = QDateTime.fromString(fecha_fin, "yyyy-MM-dd hh:mm:ss")
+            self.idm_fyh_fin.setDateTime(fecha_hora_fin)
+        else:
+            # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
+            pass
+
+    def asignar_medico(self):
+        id_medico = self.idm_int_idmedico_ingreso.text()
+        id_guardia = self.idm_int_idguardia.text()
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Question)
+        msg.setText(f"¿Estás seguro de asignar el medico{id_medico}, con el id_guardia {id_guardia}?")
+        msg.setWindowTitle("Confirmación de eliminación")
+        msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        # Mostrar el cuadro de mensaje y obtener la respuesta del usuario
+        respuesta = msg.exec_()
+        # Procesar la respuesta
+        if respuesta == QMessageBox.Yes:
+            if self.idm_int_idmedico_ingreso.text():
+                self.sqlaltaguardia_medicos.to_assign_medico(id_medico,id_guardia)
+                self.fill_idm_tlbv_1()
+
+    def alta_medicos(self):
+        subventanapara = SubVentanaAddMedico()
+        subventanapara.exec_()
+        # Después de que se cierra la subventana, actualiza la tabla
+        self.fill_idm_tlbv_2()
+
+    def delmedico(self):
+        # Obtener el índice de la fila seleccionada
+        indice_seleccionado = self.idm_tblv_2.currentIndex()
+        # Verificar si hay una selección válida
+        if indice_seleccionado.isValid():
+            # Obtener el valor de la primera columna (patente) en la fila seleccionada
+            medico = self.model_medicos_base.item(indice_seleccionado.row(), 0).text()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Question)
+            msg.setText(f"¿Estás seguro de eliminar el registro con el id {medico}?")
+            msg.setWindowTitle("Confirmación de eliminación")
+            msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            # Mostrar el cuadro de mensaje y obtener la respuesta del usuario
+            respuesta = msg.exec_()
+            # Procesar la respuesta
+            if respuesta == QMessageBox.Yes:
+                # Si el usuario hizo clic en "Sí", eliminar el registro
+                print(medico)
+                self.sqlaltaguardia_medico.borrar_paramedico(int(medico))
+            else:
+                # Si el usuario hizo clic en "No" o cerró la ventana, no hacer nada
+                print("Eliminación cancelada.")
+            self.fill_adg_tblv_2()
+        else:
+            print("No hay una fila seleccionada")
+            QMessageBox.warning(self, 'Advertencia', 'Por favor, selecciona una fila antes de intentar borrar.',
+                                QMessageBox.Ok)
+
+
+    """
+#asd
     """########## GUARDIAS CABINA ####################### """
     """########## GUARDIAS HISTORIAL ####################### """
 
@@ -433,6 +612,45 @@ class SubVentanaAddParamedico(QDialog):
         apellido = self.lineEdit_apellido.text()
         fechavencimiento = self.dateEdit_fechavencimiento.date().toString("yyyy-MM-dd")
 
-        sql = AltaGuardia()
+        sql = AltaGuardiaMovilParamedico()
         sql.alta_paramedico(legajo, nombre, apellido, fechavencimiento)
+        self.accept()
+
+class SubVentanaAddMedico(QDialog):
+    def __init__(self):
+        super(SubVentanaAddMedico, self).__init__()
+
+        # Crear widgets para la subventana
+        self.label_nombre = QLabel("Nombre:")
+        self.lineEdit_nombre = QLineEdit(self)
+
+        self.label_apellido = QLabel("Apellido:")
+        self.lineEdit_apellido = QLineEdit(self)
+
+        self.label_matricula= QLabel("Matricula:")
+        self.lineEdit_matricula = QLineEdit(self)
+
+        self.btnAceptar = QPushButton("Aceptar")
+        self.btnAceptar.clicked.connect(self.guardar_medico)
+
+        # Crear el diseño de la subventana
+        layout = QVBoxLayout()
+        layout.addWidget(self.label_nombre)
+        layout.addWidget(self.lineEdit_nombre)
+        layout.addWidget(self.label_apellido)
+        layout.addWidget(self.lineEdit_apellido)
+        layout.addWidget(self.label_matricula)
+        layout.addWidget(self.lineEdit_matricula)
+        layout.addWidget(self.btnAceptar)
+
+        # Configurar el diseño en la subventana
+        self.setLayout(layout)
+
+    def guardar_medico(self):
+        nombre = self.lineEdit_nombre.text()
+        apellido = self.lineEdit_apellido.text()
+        matricula = self.lineEdit_matricula.text()
+
+        sql = AltaGuardiasMedicos()
+        sql.alta_medico(nombre, apellido, matricula)
         self.accept()

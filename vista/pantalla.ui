@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="inicio"/>
     <widget class="QWidget" name="alt_grd">
@@ -680,7 +680,7 @@
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="page">
         <property name="geometry">
@@ -1297,7 +1297,7 @@
          <property name="geometry">
           <rect>
            <x>360</x>
-           <y>110</y>
+           <y>30</y>
            <width>41</width>
            <height>31</height>
           </rect>
@@ -1318,26 +1318,16 @@
            <normaloff>C:/Users/ELTIGRE/ProyectoGuardias/qtdesigner</normaloff>C:/Users/ELTIGRE/ProyectoGuardias/qtdesigner</iconset>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_3">
+        <widget class="QLineEdit" name="ide_txt_apellidosearch">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="geometry">
           <rect>
-           <x>30</x>
-           <y>50</y>
+           <x>60</x>
+           <y>10</y>
            <width>113</width>
            <height>20</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="ide_comb_enfermero">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>10</y>
-           <width>401</width>
-           <height>22</height>
           </rect>
          </property>
         </widget>
@@ -1345,7 +1335,7 @@
          <property name="geometry">
           <rect>
            <x>400</x>
-           <y>110</y>
+           <y>30</y>
            <width>41</width>
            <height>31</height>
           </rect>
@@ -1366,13 +1356,26 @@
            <normaloff>C:/Users/ELTIGRE/Python/Python39/Lib/site-packages/PySide2</normaloff>C:/Users/ELTIGRE/Python/Python39/Lib/site-packages/PySide2</iconset>
          </property>
         </widget>
-        <widget class="QTableWidget" name="ide_tlbv_2">
+        <widget class="QLabel" name="label_13">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>140</y>
+           <y>10</y>
+           <width>47</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Apellido</string>
+         </property>
+        </widget>
+        <widget class="QTableView" name="ide_tlbv_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>60</y>
            <width>431</width>
-           <height>441</height>
+           <height>521</height>
           </rect>
          </property>
         </widget>
@@ -1382,119 +1385,166 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>100</width>
-          <height>30</height>
+          <width>441</width>
+          <height>587</height>
          </rect>
         </property>
         <attribute name="label">
          <string>Fechas</string>
         </attribute>
-        <widget class="QLabel" name="ide_lbl_6">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>250</y>
-           <width>101</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Duracion de Guardia</string>
-         </property>
-        </widget>
         <widget class="QPushButton" name="ide_btn_add_enfermero">
          <property name="geometry">
           <rect>
            <x>340</x>
-           <y>380</y>
+           <y>400</y>
            <width>101</width>
            <height>23</height>
           </rect>
          </property>
          <property name="text">
-          <string>Agregar</string>
+          <string>Asignar Enfermero</string>
          </property>
         </widget>
-        <widget class="QLabel" name="ide_lbl_7">
+        <widget class="QWidget" name="gridLayoutWidget_8">
          <property name="geometry">
           <rect>
-           <x>50</x>
-           <y>290</y>
-           <width>91</width>
-           <height>16</height>
+           <x>10</x>
+           <y>40</y>
+           <width>421</width>
+           <height>341</height>
           </rect>
          </property>
-         <property name="text">
-          <string>Fecha de fin</string>
-         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Paramedico</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QDateTimeEdit" name="ide_fyh_fin">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="idm_lbl_6">
+            <property name="text">
+             <string>Fecha de inicio:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QDateTimeEdit" name="ide_fyh_inicio">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>Base</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="idm_lbl_8">
+            <property name="text">
+             <string>Fecha de fin</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>Enfermero</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QLineEdit" name="ide_txt_enfermero">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLineEdit" name="ide_txt_paramedico">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="ide_txt_base">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>Id Guardia</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLineEdit" name="ide_int_idguardia">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
-        <widget class="QLabel" name="ide_lbl_5">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>20</y>
-           <width>111</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Fecha de inicio:</string>
-         </property>
-        </widget>
-        <widget class="QTimeEdit" name="ide_time_1">
-         <property name="geometry">
-          <rect>
-           <x>160</x>
-           <y>250</y>
-           <width>61</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="calendarPopup">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QDateTimeEdit" name="ide_fyh_inicio">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>20</y>
-           <width>181</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QCalendarWidget" name="ide_cal_1">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>50</y>
-           <width>321</width>
-           <height>183</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QDateTimeEdit" name="ide_fyh_fin">
+        <widget class="QLineEdit" name="ide_txt_medico_ingreso">
          <property name="geometry">
           <rect>
            <x>120</x>
-           <y>290</y>
-           <width>101</width>
-           <height>22</height>
+           <y>10</y>
+           <width>271</width>
+           <height>20</height>
           </rect>
          </property>
         </widget>
-        <widget class="QPushButton" name="ide_btn_mod_time_enfermero">
+        <widget class="QLineEdit" name="ide_int_idmedico_ingreso">
          <property name="geometry">
           <rect>
-           <x>340</x>
-           <y>410</y>
-           <width>101</width>
-           <height>23</height>
+           <x>30</x>
+           <y>10</y>
+           <width>41</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_18">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>21</width>
+           <height>16</height>
           </rect>
          </property>
          <property name="text">
-          <string>Modificar Horario</string>
+          <string>Id</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_19">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>10</y>
+           <width>47</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Medico:</string>
          </property>
         </widget>
        </widget>
