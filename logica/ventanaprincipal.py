@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, uic 
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit ,QTableView 
-from PyQt5.QtCore import QDate , QTime , QDateTime
+from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit 
+from PyQt5.QtCore import QDate , QDateTime
 
 from modelo.Conect import ConsultasSql , AltaGuardiaMovilParamedico, AltaGuardiasMedicos
 
@@ -358,7 +358,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
     """########## ALTA DE GUARDIAS ####################### ENFERMERO """
     """########## GUARDIAS CABINA ####################### """
     """########## GUARDIAS HISTORIAL ####################### """
-    
+
 class SubVentanaAddMovil(QDialog):
     def __init__(self):
         super(SubVentanaAddMovil, self).__init__()
