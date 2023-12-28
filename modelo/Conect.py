@@ -64,7 +64,7 @@ class ConsultasSql(ConexionConBase):
         """
         return self.ejecutar_consulta(consulta, usuario)
 
-class AltaGuardia(ConexionConBase):
+class AltaGuardiaMovilParamedico(ConexionConBase):
     def fill_Bases_sql(self):
         consulta = "SELECT mov_int_id , mov_txt_movil, mov_txt_patente FROM Moviles"
         return self.ejecutar_consulta(consulta)
@@ -109,8 +109,10 @@ class AltaGuardia(ConexionConBase):
         consulta = "INSERT INTO [GuardiasMedicas].[dbo].[Guardias] ([grd_int_idmovil],[grd_int_idparamedico],[grd_fyh_inicio],[grd_fyh_fin],[grd_txt_estado]) VALUES (?, ?, ?, ? , ?)"
         self.ejecutar_consulta(consulta, idmovil,idparamedico,fyh_inicio,fyh_fin,"incompleta")
 
+class AltaGuardiasMedicos(ConexionConBase):
+
     def fill_table_guard_idm(self):
-        consulta = """SELECT grd_int_id , mov_txt_movil , par_txt_apellido , par_txt_nombre , grd_fyh_inicio , grd_fyh_fin , med_txt_nombre
+        consulta = """SELECT grd_int_id , mov_txt_movil , CONCAT(par_txt_apellido , ' ',par_txt_nombre) , grd_fyh_inicio , grd_fyh_fin , CONCAT(med_txt_nombre, ' ', med_txt_apellido)
                 FROM Guardias 
                 JOIN Paramedicos on grd_int_idparamedico = par_int_id
                 JOIN Moviles on grd_int_idmovil = mov_int_id
@@ -132,5 +134,8 @@ class AltaGuardia(ConexionConBase):
         valor = ('%'+valor+'%')
         return self.ejecutar_consulta(consulta,valor)
         
+    def to_assign_medico(self,id_medico , id_guardia):
+        consulta = "UPDATE Guardias SET grd_int_idmedico = ? WHERE grd_int_id = ?"
+        self.ejecutar_consulta(consulta,id_medico,id_guardia)
 
 
