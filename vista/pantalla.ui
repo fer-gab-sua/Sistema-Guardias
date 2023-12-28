@@ -1279,7 +1279,7 @@
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="page_3">
         <property name="geometry">
@@ -1501,7 +1501,7 @@
           </item>
          </layout>
         </widget>
-        <widget class="QLineEdit" name="ide_txt_medico_ingreso">
+        <widget class="QLineEdit" name="ide_txt_enfermero_ingreso">
          <property name="geometry">
           <rect>
            <x>120</x>
@@ -1511,7 +1511,7 @@
           </rect>
          </property>
         </widget>
-        <widget class="QLineEdit" name="ide_int_idmedico_ingreso">
+        <widget class="QLineEdit" name="ide_int_idenfermero_ingreso">
          <property name="geometry">
           <rect>
            <x>30</x>

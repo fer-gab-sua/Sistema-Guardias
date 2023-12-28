@@ -82,14 +82,14 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.fill_ide_tlbv_1()
         self.ide_tlbv_1.setModel(self.model_enfermero_guardias)
         self.ide_tlbv_1.resizeColumnsToContents()
-        #self.ide_tlbv_1.doubleClicked.connect(self.select_ide_tblv_1)
+        self.ide_tlbv_1.doubleClicked.connect(self.select_ide_tblv_1)
         
         #Segunda pantalla 2 - BASE DE MEDICOS - 
         self.model_enfermero_base = QStandardItemModel()
         self.fill_ide_tlbv_2()
         self.ide_tlbv_2.setModel(self.model_enfermero_base)
         self.ide_tlbv_2.resizeColumnsToContents()
-        #self.ide_tblv_2.doubleClicked.connect(self.select_ide_tblv_2)
+        self.ide_tlbv_2.doubleClicked.connect(self.select_ide_tblv_2)
         self.ide_txt_apellidosearch.textChanged.connect(self.search_enfermero)
 
         #Segunda pantalla 2 - asignarmedico
@@ -440,48 +440,48 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
             self.idm_tblv_2.resizeColumnsToContents()
         else: 
             self.fill_ide_tlbv_2()
-    """
+
     def select_ide_tblv_2(self):
-        indice_seleccionado = self.idm_tblv_2.currentIndex()
-        id_medico = self.model_medicos_base.item(indice_seleccionado.row(), 0).text()
-        medico_nombre = self.model_medicos_base.item(indice_seleccionado.row(), 1).text()
-        medico_apellido = self.model_medicos_base.item(indice_seleccionado.row(), 2).text()
-        
-        if id_medico:
+        indice_seleccionado = self.ide_tlbv_2.currentIndex()
+        id_enfermero = self.model_enfermero_base.item(indice_seleccionado.row(), 0).text()
+        enfermero_nombre = self.model_enfermero_base.item(indice_seleccionado.row(), 1).text()
+        enfermero_apellido = self.model_enfermero_base.item(indice_seleccionado.row(), 2).text()
+  
+        if id_enfermero:
             # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
-            self.idm_int_idmedico_ingreso.setText(str(id_medico))
-            medico = (medico_nombre + " " + medico_apellido)
-            self.idm_txt_medico_ingreso.setText(str(medico))
-            self.idm_tlbox_1.setItemText(0,str("Medico: "+medico))
+            self.ide_int_idenfermero_ingreso.setText(str(id_enfermero))
+            enfermero = (enfermero_nombre + " " + enfermero_apellido)
+            self.ide_txt_enfermero_ingreso.setText(str(enfermero))
+            self.ide_tlbox_1.setItemText(0,str("Enfermero "+enfermero))
 
         else:
             # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
-            self.idm_tlbox_1.setItemText(0,str("Medico: "))
+            self.ide_tlbox_1.setItemText(0,str("Enfermero: "))
 
 
 
-    def select_idm_tblv_1(self):
-        indice_seleccionado = self.idm_tblv_1.currentIndex()
-        id_guardia = self.model_medicos_guardias.item(indice_seleccionado.row(), 0).text()
-        base = self.model_medicos_guardias.item(indice_seleccionado.row(), 1).text()
-        paramedico = self.model_medicos_guardias.item(indice_seleccionado.row(), 2).text()
-        fecha_ini = self.model_medicos_guardias.item(indice_seleccionado.row(), 3).text()
-        fecha_fin = self.model_medicos_guardias.item(indice_seleccionado.row(), 4).text()
+    def select_ide_tblv_1(self):
+        indice_seleccionado = self.ide_tlbv_1.currentIndex()
+        id_guardia = self.model_enfermero_guardias.item(indice_seleccionado.row(), 0).text()
+        base = self.model_enfermero_guardias.item(indice_seleccionado.row(), 1).text()
+        paramedico = self.model_enfermero_guardias.item(indice_seleccionado.row(), 2).text()
+        fecha_ini = self.model_enfermero_guardias.item(indice_seleccionado.row(), 3).text()
+        fecha_fin = self.model_enfermero_guardias.item(indice_seleccionado.row(), 4).text()
                 
         if id_guardia:
             # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
-            self.idm_int_idguardia.setText(str(id_guardia))
-            self.idm_txt_base.setText(str(base))
-            self.idm_txt_paramedico.setText(str(paramedico))
-            self.idm_txt_enfermero.setText(str(""))
+            self.ide_int_idguardia.setText(str(id_guardia))
+            self.ide_txt_base.setText(str(base))
+            self.ide_txt_paramedico.setText(str(paramedico))
+            self.ide_txt_enfermero.setText(str(""))
             fecha_hora_ini = QDateTime.fromString(fecha_ini, "yyyy-MM-dd hh:mm:ss")
-            self.idm_fyh_inicio.setDateTime(fecha_hora_ini)
+            self.ide_fyh_inicio.setDateTime(fecha_hora_ini)
             fecha_hora_fin = QDateTime.fromString(fecha_fin, "yyyy-MM-dd hh:mm:ss")
-            self.idm_fyh_fin.setDateTime(fecha_hora_fin)
+            self.ide_fyh_fin.setDateTime(fecha_hora_fin)
         else:
             # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
             pass
-
+    """      
     def asignar_medico(self):
         id_medico = self.idm_int_idmedico_ingreso.text()
         id_guardia = self.idm_int_idguardia.text()
