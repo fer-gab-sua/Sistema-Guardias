@@ -481,7 +481,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         else:
             # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
             pass
-    """      
+    """   HASTA ACA LLEGUE   
     def asignar_medico(self):
         id_medico = self.idm_int_idmedico_ingreso.text()
         id_guardia = self.idm_int_idguardia.text()

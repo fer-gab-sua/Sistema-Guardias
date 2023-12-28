@@ -171,7 +171,7 @@ class AltaGuardiasEnfermero(ConexionConBase):
                 """
         valor = ('%'+valor+'%')
         return self.ejecutar_consulta(consulta,valor)
-        
+        #HASTA ACA LLEGUE
     def to_assign_enfermero(self,id_medico , id_guardia):
         consulta = "UPDATE Guardias SET grd_int_idmedico = ? WHERE grd_int_id = ?"
         self.ejecutar_consulta(consulta,id_medico,id_guardia)
