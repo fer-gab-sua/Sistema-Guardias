@@ -61,6 +61,14 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.idm_tblv_1.setModel(self.model_medicos_guardias)
         self.idm_tblv_1.resizeColumnsToContents()
         self.idm_tblv_1.doubleClicked.connect(self.select_idm_tblv_1)
+        
+        #Segunda pantalla 2 - BASE DE MEDICOS - 
+        self.model_medicos_base = QStandardItemModel()
+        self.fill_idm_tlbv_2()
+        self.idm_tblv_2.setModel(self.model_medicos_base)
+        self.idm_tblv_2.resizeColumnsToContents()
+        self.idm_tblv_2.doubleClicked.connect(self.select_idm_tblv_2)
+        self.idm_txt_apellidomed.textChanged.connect(self.search_medico)
 
 
     """######### FUNCIONES GENERALES#####################"""
@@ -263,10 +271,45 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.adg_tblv_3.resizeColumnsToContents()
 
     """########## TODO ALTA DE MEDICO ####################### """
-    def fill_idm_tlbv_1(self):
-        bases_datos = self.sqlaltaguardia.fill_table_guard_adg()
+    def fill_idm_tlbv_2(self):
+        bases_datos = self.sqlaltaguardia.fill_table_medicos_idm()
         # Configuración del QTableView
-        header_labels_alta_guardia = ['Id','Base', 'Apellido P.' , 'Nombre P.', 'Fecha Inicio' , 'Fecha Fin']  
+        header_labels_alta_medicos = ['Id','Nombre', 'Apellido' , 'Matricula']  
+        self.fill_table(bases_datos,self.model_medicos_base,header_labels_alta_medicos)
+        self.idm_tblv_2.resizeColumnsToContents()
+
+    def search_medico(self):
+        if self.idm_txt_apellidomed:
+            valor = self.idm_txt_apellidomed.text()
+            bases_datos = self.sqlaltaguardia.fill_table_medicos_idm_search(valor)
+            # Configuración del QTableView
+            header_labels_alta_medicos = ['Id','Nombre', 'Apellido' , 'Matricula']  
+            self.fill_table(bases_datos,self.model_medicos_base,header_labels_alta_medicos)
+            self.idm_tblv_2.resizeColumnsToContents()
+        else: 
+            self.fill_idm_tlbv_2()
+
+    def select_idm_tblv_2(self):
+        indice_seleccionado = self.idm_tblv_2.currentIndex()
+        id_medico = self.model_medicos_base.item(indice_seleccionado.row(), 0).text()
+        medico_nombre = self.model_medicos_base.item(indice_seleccionado.row(), 1).text()
+        medico_apellido = self.model_medicos_base.item(indice_seleccionado.row(), 2).text()
+        
+        if id_medico:
+            # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
+            self.idm_int_idmedico_ingreso.setText(str(id_medico))
+            medico = (medico_nombre + " " + medico_apellido)
+            self.idm_txt_medico_ingreso.setText(str(medico))
+            self.idm_tlbox_1.setItemText(0,str("Medico: "+medico))
+
+        else:
+            # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
+            self.idm_tlbox_1.setItemText(0,str("Medico: "))
+
+    def fill_idm_tlbv_1(self):
+        bases_datos = self.sqlaltaguardia.fill_table_guard_idm()
+        # Configuración del QTableView
+        header_labels_alta_guardia = ['Id','Base', 'Apellido P.' , 'Nombre P.', 'Fecha Inicio' , 'Fecha Fin', 'Medico']  
         self.fill_table(bases_datos,self.model_medicos_guardias,header_labels_alta_guardia)
         self.idm_tblv_1.resizeColumnsToContents()
 
@@ -274,19 +317,25 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         indice_seleccionado = self.idm_tblv_1.currentIndex()
         id_guardia = self.model_medicos_guardias.item(indice_seleccionado.row(), 0).text()
         base = self.model_medicos_guardias.item(indice_seleccionado.row(), 1).text()
-        paramedico = self.model_medicos_guardias.item(indice_seleccionado.row(), 2).text()
-        enfermero = self.model_medicos_guardias.item(indice_seleccionado.row(), 3).text()
+        paramedico_nombre = self.model_medicos_guardias.item(indice_seleccionado.row(), 2).text()
+        paramedico_apellido = self.model_medicos_guardias.item(indice_seleccionado.row(), 3).text()
         fecha_ini = self.model_medicos_guardias.item(indice_seleccionado.row(), 4).text()
-        fecha_fin = self.model_medicos_guardias.item(indice_seleccionado.row(), 4).text()
+        fecha_fin = self.model_medicos_guardias.item(indice_seleccionado.row(), 5).text()
                 
         if id_guardia:
             # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
             self.idm_int_idguardia.setText(str(id_guardia))
-            self.idm_txt_paramedico.setText(str(paramedico))
-            self.idm_txt_enfermero.setText(str(enfermero))
+            self.idm_txt_base.setText(str(base))
+            self.idm_txt_paramedico.setText(str(paramedico_nombre  +" "+ paramedico_apellido))
+            self.idm_txt_enfermero.setText(str(""))
+            fecha_hora_ini = QDateTime.fromString(fecha_ini, "yyyy-MM-dd hh:mm:ss")
+            self.idm_fyh_inicio.setDateTime(fecha_hora_ini)
+            fecha_hora_fin = QDateTime.fromString(fecha_fin, "yyyy-MM-dd hh:mm:ss")
+            self.idm_fyh_fin.setDateTime(fecha_hora_fin)
         else:
             # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
             pass
+
 
 
 class SubVentanaAddMovil(QDialog):

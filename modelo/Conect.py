@@ -109,8 +109,28 @@ class AltaGuardia(ConexionConBase):
         consulta = "INSERT INTO [GuardiasMedicas].[dbo].[Guardias] ([grd_int_idmovil],[grd_int_idparamedico],[grd_fyh_inicio],[grd_fyh_fin],[grd_txt_estado]) VALUES (?, ?, ?, ? , ?)"
         self.ejecutar_consulta(consulta, idmovil,idparamedico,fyh_inicio,fyh_fin,"incompleta")
 
-
+    def fill_table_guard_idm(self):
+        consulta = """SELECT grd_int_id , mov_txt_movil , par_txt_apellido , par_txt_nombre , grd_fyh_inicio , grd_fyh_fin , med_txt_nombre
+                FROM Guardias 
+                JOIN Paramedicos on grd_int_idparamedico = par_int_id
+                JOIN Moviles on grd_int_idmovil = mov_int_id
+                LEFT JOIN Medicos on grd_int_idmedico = med_int_id
+                WHERE grd_txt_estado = 'incompleta' OR grd_txt_estado = 'completa'"""
+        return self.ejecutar_consulta(consulta)
+    
+    def fill_table_medicos_idm(self):
+        consulta = """SELECT med_int_id , med_txt_nombre , med_txt_apellido , med_int_matricula
+                FROM Medicos
+                """
+        return self.ejecutar_consulta(consulta)
+    
+    def fill_table_medicos_idm_search(self,valor):
+        consulta = """SELECT med_int_id , med_txt_nombre , med_txt_apellido , med_int_matricula
+                FROM Medicos
+                WHERE med_txt_apellido LIKE ?
+                """
+        valor = ('%'+valor+'%')
+        return self.ejecutar_consulta(consulta,valor)
         
 
-objeto = AltaGuardia()
-objeto.alta_guardia_movil(1,1,"2000-01-01 00:00:00","2000-01-01 00:00:00")
+

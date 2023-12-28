@@ -698,7 +698,7 @@
          <property name="geometry">
           <rect>
            <x>360</x>
-           <y>110</y>
+           <y>20</y>
            <width>41</width>
            <height>31</height>
           </rect>
@@ -719,34 +719,11 @@
            <normaloff>C:/Users/ELTIGRE/ProyectoGuardias/qtdesigner</normaloff>C:/Users/ELTIGRE/ProyectoGuardias/qtdesigner</iconset>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_2">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>50</y>
-           <width>113</width>
-           <height>20</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="idm_comb_medicos">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>10</y>
-           <width>401</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
         <widget class="QCommandLinkButton" name="idm_btn_delaltamedico">
          <property name="geometry">
           <rect>
            <x>400</x>
-           <y>110</y>
+           <y>20</y>
            <width>41</width>
            <height>31</height>
           </rect>
@@ -767,13 +744,36 @@
            <normaloff>C:/Users/ELTIGRE/Python/Python39/Lib/site-packages/PySide2</normaloff>C:/Users/ELTIGRE/Python/Python39/Lib/site-packages/PySide2</iconset>
          </property>
         </widget>
-        <widget class="QTableWidget" name="idm_tlbv_2">
+        <widget class="QLabel" name="label_11">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>140</y>
+           <y>10</y>
+           <width>47</width>
+           <height>13</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Apellido</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="idm_txt_apellidomed">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>10</y>
+           <width>301</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QTableView" name="idm_tblv_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>50</y>
            <width>431</width>
-           <height>441</height>
+           <height>531</height>
           </rect>
          </property>
         </widget>
@@ -912,10 +912,10 @@
           </item>
          </layout>
         </widget>
-        <widget class="QLineEdit" name="lineEdit_6">
+        <widget class="QLineEdit" name="idm_txt_medico_ingreso">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>110</x>
            <y>10</y>
            <width>271</width>
            <height>20</height>
@@ -925,7 +925,7 @@
         <widget class="QLabel" name="label_9">
          <property name="geometry">
           <rect>
-           <x>40</x>
+           <x>70</x>
            <y>10</y>
            <width>47</width>
            <height>13</height>
@@ -933,6 +933,29 @@
          </property>
          <property name="text">
           <string>Medico:</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_12">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>10</y>
+           <width>21</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Id</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="idm_int_idmedico_ingreso">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>41</width>
+           <height>20</height>
+          </rect>
          </property>
         </widget>
        </widget>
@@ -956,7 +979,7 @@
       <widget class="QTableView" name="idm_tblv_1">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>30</x>
          <y>20</y>
          <width>591</width>
          <height>651</height>
