@@ -3,7 +3,9 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit 
 from PyQt5.QtCore import QDate , QDateTime
 
-from modelo.Conect import ConsultasSql , AltaGuardiaMovilParamedico, AltaGuardiasMedicos , AltaGuardiasEnfermero
+from datetime import datetime
+
+from modelo.Conect import ConsultasSql , AltaGuardiaMovilParamedico, AltaGuardiasMedicos , AltaGuardiasEnfermero , ConsultasCabina
 
 
 class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
@@ -13,6 +15,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.sqlaltaguardia_paramedico = AltaGuardiaMovilParamedico()
         self.sqlaltaguardia_medicos = AltaGuardiasMedicos()
         self.sqlaltaguardia_enfermero = AltaGuardiasEnfermero()
+        self.sqlcabina = ConsultasCabina()
         uic.loadUi('vista/pantalla.ui', self)
         self.setWindowTitle("Pantalla de guadias")
         #logica de usuarios:
@@ -96,7 +99,23 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.ide_btn_add_enfermero.clicked.connect(self.asignar_enfermero)
         self.ide_btn_addaltaenfermero.clicked.connect(lambda:self.alta_enfermero())
         self.ide_btn_delaltaenfermero.clicked.connect(self.delenfermero)
+    
+        ###ARRANCO CON CABINA
+
+        self.model_cabina = QStandardItemModel()
+        self.fill_cab_tlbv_1()
+        self.gcab_tblv_1.setModel(self.model_cabina)
+        self.gcab_tblv_1.resizeColumnsToContents()
+
+        self.gcab_tblv_1.doubleClicked.connect(self.select_cab)
+
+        self.gcab_ckb_fyhguardia.stateChanged.connect(self.filtrar_select_cab)
+
+
     """######### FUNCIONES GENERALES#####################"""
+
+
+
     def permisos(self,usuario):
         if usuario == "Admin":
             self.actionAlta_de_Guardias.setEnabled(True)
@@ -135,7 +154,8 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
                 modelo.appendRow(row_items)
                 modelo.setHorizontalHeaderLabels(header_labels)
         else:
-            print("base d datos vacia")
+            modelo.clear()
+            modelo.setHorizontalHeaderLabels(header_labels)
 
 
     """########## ALTA DE GUARDIAS ####################### BASE"""
@@ -532,6 +552,64 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
 
 #asd
     """########## GUARDIAS CABINA ####################### """
+
+    def fill_cab_tlbv_1(self):
+        bases_datos = self.sqlcabina.fill_table_guard_cab()
+        # Configuración del QTableView
+        header_labels_alta_guardiaenfermero = ['Id','Base', 'Paramedico', 'Enfermero', 'Medico','Fecha Inicio' , 'Fecha Fin', 'Observaciones','Estado']  
+        self.fill_table(bases_datos,self.model_cabina,header_labels_alta_guardiaenfermero)
+        self.gcab_tblv_1.resizeColumnsToContents()
+    
+    def select_cab(self):###este es el que va por ahora
+        indice_seleccionado = self.gcab_tblv_1.currentIndex()
+        id_guardia = self.model_cabina.item(indice_seleccionado.row(), 0).text()
+        base = self.model_cabina.item(indice_seleccionado.row(), 1).text()
+        paramedico = self.model_cabina.item(indice_seleccionado.row(), 2).text()
+        enfermero =  self.model_cabina.item(indice_seleccionado.row(), 3).text()
+        medico =  self.model_cabina.item(indice_seleccionado.row(), 4).text()
+        fecha_ini = self.model_cabina.item(indice_seleccionado.row(), 5).text()
+        fecha_fin = self.model_cabina.item(indice_seleccionado.row(), 6).text()
+        observaciones = self.model_cabina.item(indice_seleccionado.row(), 7).text()
+
+
+        print(id_guardia)
+        if id_guardia:
+            # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
+            self.gcab_let_idguardia.setText(str(id_guardia))
+            self.gcab_let_base.setText(str(base))
+            self.gcab_let_paramedico.setText(str(paramedico))
+            self.gcab_let_enfermero.setText(str(enfermero))
+            self.gcab_let_medico.setText(str(medico))
+            fecha_hora_ini = QDateTime.fromString(fecha_ini, "yyyy-MM-dd hh:mm:ss")
+            self.gcab_fyh_inicioidguardia.setDateTime(fecha_hora_ini)
+            fecha_hora_fin = QDateTime.fromString(fecha_fin, "yyyy-MM-dd hh:mm:ss")
+            self.gcab_fyh_finidguardia.setDateTime(fecha_hora_fin)
+            self.gcab_txe_observaciones.setText(observaciones)
+
+        else:
+            # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
+            pass
+
+    def filtrar_select_cab(self,estado):
+        if estado == 2:  # 2 representa el estado tildado, 0 representa destildado
+            print("QCheckBox tildado")
+            fecha_ini = self.gcab_fyh_iniciofiltro.text()
+            fecha_ini_format = datetime.strptime(fecha_ini,"%d/%m/%Y %H:%M")
+            fecha_ini = fecha_ini_format.strftime("%Y-%m-%d %H:%M:%S.000")
+            fecha_fin = self.gcab_fyh_finfiltro.text()
+            fecha_fin_format = datetime.strptime(fecha_fin,"%d/%m/%Y %H:%M")
+            fecha_fin = fecha_fin_format.strftime("%Y-%m-%d %H:%M:%S.000")
+            bases_datos = self.sqlcabina.fill_table_guard_cab(fecha_ini,fecha_fin)
+        else:
+            print("QCheckBox destildado")
+            # Aquí puedes llamar a la función que deseas ejecutar al destildar el QCheckBox
+            bases_datos = self.sqlcabina.fill_table_guard_cab()
+            # Configuración del QTableView
+        header_labels_alta_guardiaenfermero = ['Id','Base', 'Paramedico', 'Enfermero', 'Medico','Fecha Inicio' , 'Fecha Fin', 'Observaciones','Estado']  
+        self.fill_table(bases_datos,self.model_cabina,header_labels_alta_guardiaenfermero)
+        self.gcab_tblv_1.resizeColumnsToContents()
+        
+
 
 
     """########## GUARDIAS HISTORIAL ####################### """

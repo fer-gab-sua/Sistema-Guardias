@@ -183,3 +183,24 @@ class AltaGuardiasEnfermero(ConexionConBase):
     def borrar_enfermero(self,id_enfermero):
             consulta = "DELETE FROM [GuardiasMedicas].[dbo].[Enfermeros] WHERE enf_int_id = (?)"
             self.ejecutar_consulta(consulta, id_enfermero)
+
+class ConsultasCabina(ConexionConBase):
+    def fill_table_guard_cab(self,ini="2000-12-26 23:59:59.000",fin="2223-12-26 23:59:59.000"):
+        consulta = """SELECT grd_int_id ,
+                            mov_txt_movil ,
+                            CONCAT(par_txt_apellido , ' ',par_txt_nombre) ,
+                            CONCAT(enf_txt_nombre, ' ', enf_txt_apellido) ,   
+                            CONCAT(med_txt_nombre, ' ', med_txt_apellido) , 
+                            grd_fyh_inicio , 
+                            grd_fyh_fin , 
+                            grd_txt_observaciones, 
+                            grd_txt_estado
+                FROM Guardias 
+                JOIN Paramedicos on grd_int_idparamedico = par_int_id
+                JOIN Moviles on grd_int_idmovil = mov_int_id
+                LEFT JOIN Medicos on grd_int_idmedico = med_int_id
+                LEFT JOIN Enfermeros on grd_int_idenfermero = enf_int_id
+                WHERE grd_fyh_inicio >= ? AND grd_fyh_fin <= ?"""
+        
+        return self.ejecutar_consulta(consulta,ini,fin)
+

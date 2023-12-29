@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="inicio"/>
     <widget class="QWidget" name="alt_grd">
@@ -1038,13 +1038,16 @@
          <height>301</height>
         </rect>
        </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
       </widget>
       <widget class="QTextEdit" name="gcab_txe_observaciones">
        <property name="geometry">
         <rect>
-         <x>710</x>
-         <y>460</y>
-         <width>401</width>
+         <x>720</x>
+         <y>480</y>
+         <width>391</width>
          <height>121</height>
         </rect>
        </property>
@@ -1055,23 +1058,12 @@
          <x>10</x>
          <y>460</y>
          <width>701</width>
-         <height>121</height>
+         <height>141</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gcab_glay_2">
-        <item row="0" column="0">
-         <widget class="QLabel" name="gcab_lbl_4">
-          <property name="text">
-           <string>Id Guardia</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QLabel" name="gcab_lbl_8">
-          <property name="text">
-           <string>Medico</string>
-          </property>
-         </widget>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="gcab_let_idguardia"/>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="gcab_lbl_9">
@@ -1080,31 +1072,14 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QDateTimeEdit" name="gcab_fyh_inicioidguardia"/>
-        </item>
-        <item row="1" column="3">
-         <widget class="QLineEdit" name="gcab_let_medico"/>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="gcab_lbl_5">
-          <property name="text">
-           <string>Paramedico</string>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="1">
          <widget class="QDateTimeEdit" name="gcab_fyh_finidguardia"/>
         </item>
-        <item row="2" column="2">
-         <widget class="QLabel" name="gcab_lbl_10">
-          <property name="text">
-           <string>Enfermero</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="3">
-         <widget class="QLineEdit" name="gcab_let_paramedico"/>
+         <widget class="QLineEdit" name="gcab_let_base"/>
+        </item>
+        <item row="1" column="5">
+         <widget class="QLineEdit" name="gcab_let_medico"/>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="gcab_lbl_7">
@@ -1113,16 +1088,54 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="3">
-         <widget class="QLineEdit" name="gcab_let_enfermero"/>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="gcab_let_idguardia"/>
+        <item row="0" column="0">
+         <widget class="QLabel" name="gcab_lbl_4">
+          <property name="text">
+           <string>Id Guardia</string>
+          </property>
+         </widget>
         </item>
         <item row="0" column="4">
+         <widget class="QLabel" name="gcab_lbl_5">
+          <property name="text">
+           <string>Paramedico</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <widget class="QLabel" name="gcab_lbl_10">
+          <property name="text">
+           <string>Enfermero</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="6">
          <widget class="QLabel" name="gcab_lbl_6">
           <property name="text">
            <string>Observaciones</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="5">
+         <widget class="QLineEdit" name="gcab_let_enfermero"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDateTimeEdit" name="gcab_fyh_inicioidguardia"/>
+        </item>
+        <item row="0" column="5">
+         <widget class="QLineEdit" name="gcab_let_paramedico"/>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_20">
+          <property name="text">
+           <string>Base</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QLabel" name="gcab_lbl_8">
+          <property name="text">
+           <string>Medico</string>
           </property>
          </widget>
         </item>
