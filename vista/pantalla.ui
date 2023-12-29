@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="inicio"/>
     <widget class="QWidget" name="alt_grd">
@@ -68,7 +68,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="alt_grd_movil">
         <property name="geometry">
@@ -525,20 +525,20 @@
           <rect>
            <x>130</x>
            <y>40</y>
-           <width>95</width>
+           <width>61</width>
            <height>20</height>
           </rect>
          </property>
          <property name="text">
-          <string>Apellido Paramedico</string>
+          <string>Paramedico</string>
          </property>
         </widget>
         <widget class="QLineEdit" name="adg_txt_paramedico">
          <property name="geometry">
           <rect>
-           <x>230</x>
+           <x>190</x>
            <y>40</y>
-           <width>101</width>
+           <width>141</width>
            <height>20</height>
           </rect>
          </property>
@@ -680,7 +680,7 @@
         </rect>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page">
         <property name="geometry">

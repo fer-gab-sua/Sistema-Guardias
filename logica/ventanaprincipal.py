@@ -5,7 +5,10 @@ from PyQt5.QtCore import QDate , QDateTime
 
 from datetime import datetime
 
-from modelo.Conect import ConsultasSql , AltaGuardiaMovilParamedico, AltaGuardiasMedicos , AltaGuardiasEnfermero , ConsultasCabina
+from modelo.Conect import ConsultasSql , ConsultasCabina
+from modelo.alt_guard_paramedic import AltaGuardiaMovilParamedico
+from modelo.alt_guard_medic import AltaGuardiasMedicos
+from modelo.alt_guard_enfermero import AltaGuardiasEnfermero
 
 
 class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
@@ -320,7 +323,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
 
     """########## ALTA DE GUARDIAS ####################### MEDICOS """
     def fill_idm_tlbv_2(self):
-        bases_datos = self.sqlaltaguardia_medicos.fill_table_guard_idm()
+        bases_datos = self.sqlaltaguardia_medicos.fill_table_medicos_idm_search("")
         # Configuración del QTableView
         header_labels_alta_medicos = ['Id','Nombre', 'Apellido' , 'Matricula']  
         self.fill_table(bases_datos,self.model_medicos_base,header_labels_alta_medicos)
@@ -342,11 +345,11 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         id_medico = self.model_medicos_base.item(indice_seleccionado.row(), 0).text()
         medico_nombre = self.model_medicos_base.item(indice_seleccionado.row(), 1).text()
         medico_apellido = self.model_medicos_base.item(indice_seleccionado.row(), 2).text()
-        
+
         if id_medico:
             # Asegúrate de que la lista patente no esté vacía antes de acceder al índice
             self.idm_int_idmedico_ingreso.setText(str(id_medico))
-            medico = (medico_nombre + " " + medico_apellido)
+            medico = (medico_nombre+" "+medico_apellido)
             self.idm_txt_medico_ingreso.setText(str(medico))
             self.idm_tlbox_1.setItemText(0,str("Medico: "+medico))
 
@@ -400,7 +403,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
                 self.fill_idm_tlbv_1()
 
     def alta_medicos(self):
-        subventanapara = SubVentanaAddMedicoEnfermero("Alta de Medicos")
+        subventanapara = SubVentanaAddMedicoEnfermero("Alta de Medicos","M")
         subventanapara.exec_()
         # Después de que se cierra la subventana, actualiza la tabla
         self.fill_idm_tlbv_2()
@@ -517,10 +520,10 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
                 self.fill_ide_tlbv_1()
     
     def alta_enfermero(self):
-        subventanapara = SubVentanaAddMedicoEnfermero("Alta de Enfermeros")
+        subventanapara = SubVentanaAddMedicoEnfermero("Alta de Enfermeros","E")
         subventanapara.exec_()
         # Después de que se cierra la subventana, actualiza la tabla
-        self.fill_idm_tlbv_2()
+        self.fill_ide_tlbv_2()
     
     def delenfermero(self):
         # Obtener el índice de la fila seleccionada
@@ -693,9 +696,10 @@ class SubVentanaAddParamedico(QDialog):
         self.accept()
 
 class SubVentanaAddMedicoEnfermero(QDialog):
-    def __init__(self,titulo):
+    def __init__(self,titulo,tipo_alta):
         super(SubVentanaAddMedicoEnfermero, self).__init__()
         self.setWindowTitle(titulo)
+        self.tipo_alta = tipo_alta
         # Crear widgets para la subventana
         self.label_nombre = QLabel("Nombre:")
         self.lineEdit_nombre = QLineEdit(self)
@@ -726,7 +730,15 @@ class SubVentanaAddMedicoEnfermero(QDialog):
         nombre = self.lineEdit_nombre.text()
         apellido = self.lineEdit_apellido.text()
         matricula = self.lineEdit_matricula.text()
-
-        sql = AltaGuardiasMedicos()
-        sql.alta_medico(nombre, apellido, matricula)
+        #meto un if que si es medico haga uno o si es enfermero otra y lesto
+        if self.tipo_alta  == 'M':
+            sql = AltaGuardiasMedicos()
+            sql.alta_medico(nombre, apellido, matricula)
+            print("tipo elegido M")
+        elif self.tipo_alta == 'E':
+            sql = AltaGuardiasEnfermero()
+            sql.alta_enfermero(nombre,apellido,matricula)
+            print("tipo elegido E")
+        else:
+            print("error de tipo variable incorrecta")
         self.accept()
