@@ -172,14 +172,14 @@ class AltaGuardiasEnfermero(ConexionConBase):
         valor = ('%'+valor+'%')
         return self.ejecutar_consulta(consulta,valor)
         #HASTA ACA LLEGUE
-    def to_assign_enfermero(self,id_medico , id_guardia):
-        consulta = "UPDATE Guardias SET grd_int_idmedico = ? WHERE grd_int_id = ?"
-        self.ejecutar_consulta(consulta,id_medico,id_guardia)
+    def to_assign_enfermero(self,id_enfermero , id_guardia):
+        consulta = "UPDATE Guardias SET grd_int_idenfermero = ? WHERE grd_int_id = ?"
+        self.ejecutar_consulta(consulta,id_enfermero,id_guardia)
 
     def alta_enfermero(self, nombre,apellido,matricula):
             consulta = "INSERT INTO [GuardiasMedicas].[dbo].[Medicos] ([med_txt_nombre],[med_txt_apellido],[med_int_matricula]) VALUES (?, ?, ?)"
             self.ejecutar_consulta(consulta, nombre,apellido,matricula)
 
-    def borrar_enfermero(self,id_medico):
-            consulta = "DELETE FROM [GuardiasMedicas].[dbo].[Medicos] WHERE med_int_id = (?)"
-            self.ejecutar_consulta(consulta, id_medico)
+    def borrar_enfermero(self,id_enfermero):
+            consulta = "DELETE FROM [GuardiasMedicas].[dbo].[Enfermeros] WHERE enf_int_id = (?)"
+            self.ejecutar_consulta(consulta, id_enfermero)

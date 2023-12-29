@@ -93,9 +93,9 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.ide_txt_apellidosearch.textChanged.connect(self.search_enfermero)
 
         #Segunda pantalla 2 - asignarmedico
-        #self.ide_btn_add_medico.clicked.connect(self.asignar_enfermero)
-        #self.ide_btn_addaltamedico.clicked.connect(lambda:self.alta_enfermero())
-        #self.ide_btn_delaltamedico.clicked.connect(self.delenfermero)
+        self.ide_btn_add_enfermero.clicked.connect(self.asignar_enfermero)
+        self.ide_btn_addaltaenfermero.clicked.connect(lambda:self.alta_enfermero())
+        self.ide_btn_delaltaenfermero.clicked.connect(self.delenfermero)
     """######### FUNCIONES GENERALES#####################"""
     def permisos(self,usuario):
         if usuario == "Admin":
@@ -380,7 +380,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
                 self.fill_idm_tlbv_1()
 
     def alta_medicos(self):
-        subventanapara = SubVentanaAddMedico()
+        subventanapara = SubVentanaAddMedicoEnfermero("Alta de Medicos")
         subventanapara.exec_()
         # Después de que se cierra la subventana, actualiza la tabla
         self.fill_idm_tlbv_2()
@@ -458,8 +458,6 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
             # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
             self.ide_tlbox_1.setItemText(0,str("Enfermero: "))
 
-
-
     def select_ide_tblv_1(self):
         indice_seleccionado = self.ide_tlbv_1.currentIndex()
         id_guardia = self.model_enfermero_guardias.item(indice_seleccionado.row(), 0).text()
@@ -481,61 +479,61 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         else:
             # Si patente está vacío, establece el texto en blanco o maneja la situación según tu lógica
             pass
-    """   HASTA ACA LLEGUE   
-    def asignar_medico(self):
-        id_medico = self.idm_int_idmedico_ingreso.text()
-        id_guardia = self.idm_int_idguardia.text()
+
+    def asignar_enfermero(self):
+        id_enfermero = self.ide_int_idenfermero_ingreso.text()
+        id_guardia = self.ide_int_idguardia.text()
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Question)
-        msg.setText(f"¿Estás seguro de asignar el medico{id_medico}, con el id_guardia {id_guardia}?")
+        msg.setText(f"¿Estás seguro de asignar el enfermero con id : {id_enfermero}, con el id_guardia {id_guardia}?")
         msg.setWindowTitle("Confirmación de eliminación")
         msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         # Mostrar el cuadro de mensaje y obtener la respuesta del usuario
         respuesta = msg.exec_()
         # Procesar la respuesta
         if respuesta == QMessageBox.Yes:
-            if self.idm_int_idmedico_ingreso.text():
-                self.sqlaltaguardia_medicos.to_assign_medico(id_medico,id_guardia)
-                self.fill_idm_tlbv_1()
-
-    def alta_medicos(self):
-        subventanapara = SubVentanaAddMedico()
+            if self.ide_int_idenfermero_ingreso.text():
+                self.sqlaltaguardia_enfermero.to_assign_enfermero(id_enfermero,id_guardia)
+                self.fill_ide_tlbv_1()
+    
+    def alta_enfermero(self):
+        subventanapara = SubVentanaAddMedicoEnfermero("Alta de Enfermeros")
         subventanapara.exec_()
         # Después de que se cierra la subventana, actualiza la tabla
         self.fill_idm_tlbv_2()
-
-    def delmedico(self):
+    
+    def delenfermero(self):
         # Obtener el índice de la fila seleccionada
-        indice_seleccionado = self.idm_tblv_2.currentIndex()
+        indice_seleccionado = self.ide_tlbv_2.currentIndex()
         # Verificar si hay una selección válida
         if indice_seleccionado.isValid():
             # Obtener el valor de la primera columna (patente) en la fila seleccionada
-            medico = self.model_medicos_base.item(indice_seleccionado.row(), 0).text()
+            enfermero = self.model_enfermero_base.item(indice_seleccionado.row(), 0).text()
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Question)
-            msg.setText(f"¿Estás seguro de eliminar el registro con el id {medico}?")
-            msg.setWindowTitle("Confirmación de eliminación")
+            msg.setText(f"¿Estás seguro de eliminar el registro con el id {enfermero}?")
+            msg.setWindowTitle("Confirmación de eliminaciónnnn")
             msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
             # Mostrar el cuadro de mensaje y obtener la respuesta del usuario
             respuesta = msg.exec_()
             # Procesar la respuesta
             if respuesta == QMessageBox.Yes:
                 # Si el usuario hizo clic en "Sí", eliminar el registro
-                print(medico)
-                self.sqlaltaguardia_medico.borrar_paramedico(int(medico))
+                print(enfermero)
+                self.sqlaltaguardia_enfermero.borrar_enfermero(int(enfermero))
             else:
                 # Si el usuario hizo clic en "No" o cerró la ventana, no hacer nada
                 print("Eliminación cancelada.")
-            self.fill_adg_tblv_2()
+            self.fill_ide_tlbv_2()
         else:
             print("No hay una fila seleccionada")
             QMessageBox.warning(self, 'Advertencia', 'Por favor, selecciona una fila antes de intentar borrar.',
                                 QMessageBox.Ok)
 
-
-    """
 #asd
     """########## GUARDIAS CABINA ####################### """
+
+
     """########## GUARDIAS HISTORIAL ####################### """
 
 class SubVentanaAddMovil(QDialog):
@@ -616,10 +614,10 @@ class SubVentanaAddParamedico(QDialog):
         sql.alta_paramedico(legajo, nombre, apellido, fechavencimiento)
         self.accept()
 
-class SubVentanaAddMedico(QDialog):
-    def __init__(self):
-        super(SubVentanaAddMedico, self).__init__()
-
+class SubVentanaAddMedicoEnfermero(QDialog):
+    def __init__(self,titulo):
+        super(SubVentanaAddMedicoEnfermero, self).__init__()
+        self.setWindowTitle(titulo)
         # Crear widgets para la subventana
         self.label_nombre = QLabel("Nombre:")
         self.lineEdit_nombre = QLineEdit(self)
