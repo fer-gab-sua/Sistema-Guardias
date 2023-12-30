@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="inicio"/>
     <widget class="QWidget" name="alt_grd">
@@ -564,7 +564,7 @@
       <widget class="QCommandLinkButton" name="adg_btn_delguardiaparamedico">
        <property name="geometry">
         <rect>
-         <x>500</x>
+         <x>610</x>
          <y>710</y>
          <width>81</width>
          <height>41</height>
@@ -572,19 +572,6 @@
        </property>
        <property name="text">
         <string>Borrar</string>
-       </property>
-      </widget>
-      <widget class="QCommandLinkButton" name="adg_bnt_editguardiaparamedico">
-       <property name="geometry">
-        <rect>
-         <x>600</x>
-         <y>710</y>
-         <width>81</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Editar</string>
        </property>
       </widget>
       <widget class="QLabel" name="adg_lbl_11">
@@ -606,7 +593,7 @@
          <x>30</x>
          <y>40</y>
          <width>661</width>
-         <height>631</height>
+         <height>681</height>
         </rect>
        </property>
        <property name="editTriggers">
@@ -618,7 +605,6 @@
       </widget>
       <zorder>adg_tblv_3</zorder>
       <zorder>adg_btn_delguardiaparamedico</zorder>
-      <zorder>adg_bnt_editguardiaparamedico</zorder>
       <zorder>adg_lbl_11</zorder>
      </widget>
      <widget class="QLabel" name="adg_lbl_1">
@@ -982,14 +968,27 @@
       <widget class="QTableView" name="idm_tblv_1">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>20</y>
-         <width>591</width>
-         <height>651</height>
+         <x>20</x>
+         <y>40</y>
+         <width>581</width>
+         <height>631</height>
         </rect>
        </property>
        <property name="editTriggers">
         <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+      </widget>
+      <widget class="QCommandLinkButton" name="idm_btn_actualizar">
+       <property name="geometry">
+        <rect>
+         <x>504</x>
+         <y>0</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Actualizar</string>
        </property>
       </widget>
      </widget>
@@ -1950,7 +1949,6 @@
   <tabstop>adg_btn_delbase</tabstop>
   <tabstop>adg_cal_1</tabstop>
   <tabstop>adg_btn_addguardia</tabstop>
-  <tabstop>adg_bnt_editguardiaparamedico</tabstop>
   <tabstop>adg_btn_delguardiaparamedico</tabstop>
  </tabstops>
  <resources/>

@@ -22,7 +22,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         uic.loadUi('vista/pantalla.ui', self)
         self.setWindowTitle("Pantalla de guadias")
         #logica de usuarios:
-        self.permisos(self.user_init.text())
+        #self.permisos(self.user_init.text())
         # Conecta eventos y métodos aquí
         self.actionAlta_de_Guardias.triggered.connect(lambda: self.StackedWidget_stwid_1.setCurrentIndex(1))
         self.actionMedicos.triggered.connect(lambda: self.StackedWidget_stwid_1.setCurrentIndex(2))
@@ -69,6 +69,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.idm_tblv_1.setModel(self.model_medicos_guardias)
         self.idm_tblv_1.resizeColumnsToContents()
         self.idm_tblv_1.doubleClicked.connect(self.select_idm_tblv_1)
+        self.idm_btn_actualizar.clicked.connect(self.fill_idm_tlbv_1)
         
         #Segunda pantalla 2 - BASE DE MEDICOS - 
         self.model_medicos_base = QStandardItemModel()
@@ -113,6 +114,9 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.gcab_tblv_1.doubleClicked.connect(self.select_cab)
 
         self.gcab_ckb_fyhguardia.stateChanged.connect(self.filtrar_select_cab)
+        fecha_hoy = QDateTime.currentDateTime()
+        self.gcab_fyh_iniciofiltro.setDateTime(fecha_hoy)
+        self.gcab_fyh_finfiltro.setDateTime(fecha_hoy)
 
 
     """######### FUNCIONES GENERALES#####################"""
@@ -120,6 +124,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
 
 
     def permisos(self,usuario):
+        print(usuario + "ESTE ES EL USUARIO QUE TOMO")
         if usuario == "Admin":
             self.actionAlta_de_Guardias.setEnabled(True)
             self.actionMedicos.setEnabled(True)
