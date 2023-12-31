@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, uic 
-from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit 
+from PyQt5.QtGui import QStandardItemModel, QStandardItem , QIcon
+from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit,QPushButton ,QMessageBox , QDateEdit ,QTableView ,QTableWidget, QTableWidgetItem 
 from PyQt5.QtCore import QDate , QDateTime
 
 from datetime import datetime
@@ -118,6 +118,15 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         self.gcab_fyh_iniciofiltro.setDateTime(fecha_hoy)
         self.gcab_fyh_finfiltro.setDateTime(fecha_hoy)
 
+        #pongo imagenes de boton edit
+        rutaedit = 'vista/img/edit.jpg'
+        self.gcab_clb_editbase.setIcon(QIcon(rutaedit))
+        self.gcab_clb_editparamedico.setIcon(QIcon(rutaedit))
+        self.gcab_clb_editmedico.setIcon(QIcon(rutaedit))
+        self.gcab_clb_editenfermero.setIcon(QIcon(rutaedit))
+
+        #hago las conecciones
+        self.gcab_clb_editbase.clicked.connect(self.editdotacion)
 
     """######### FUNCIONES GENERALES#####################"""
 
@@ -616,8 +625,12 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         header_labels_alta_guardiaenfermero = ['Id','Base', 'Paramedico', 'Enfermero', 'Medico','Fecha Inicio' , 'Fecha Fin', 'Observaciones','Estado']  
         self.fill_table(bases_datos,self.model_cabina,header_labels_alta_guardiaenfermero)
         self.gcab_tblv_1.resizeColumnsToContents()
-        
-
+    
+    def editdotacion(self):
+        header_labels_base = ['Id' , 'Base', 'Patente']
+        base = self.sqlaltaguardia_paramedico.fill_Bases_sql()
+        subventana_edit = SubVentanaEditDotacion("Enfermeros",self.model_moviles,base,header_labels_base)
+        subventana_edit.exec_()
 
 
     """########## GUARDIAS HISTORIAL ####################### """
@@ -747,3 +760,31 @@ class SubVentanaAddMedicoEnfermero(QDialog):
         else:
             print("error de tipo variable incorrecta")
         self.accept()
+
+class SubVentanaEditDotacion(QDialog):
+    def __init__(self,tipo_dot,modelo,base_datos,header_labels):
+        super(SubVentanaEditDotacion, self).__init__()
+        # Crear un QTableView
+        self.qtableview = QTableView()
+        self.qtableview.setModel(modelo)
+        self.setWindowTitle(tipo_dot)
+        self.qtableview.setEditTriggers(QTableView.NoEditTriggers)
+        if base_datos:
+            modelo.clear()
+
+            for tupla in base_datos:
+                fila = tupla
+                row_items = [QStandardItem(str(dato)) for dato in fila]
+                modelo.appendRow(row_items)
+                modelo.setHorizontalHeaderLabels(header_labels)
+        else:
+            modelo.clear()
+            modelo.setHorizontalHeaderLabels(header_labels)
+        # Crear un modelo de datos (esto es solo un ejemplo, debes ajustarlo según tus necesidades)
+        # Crear un diseño vertical para la ventana
+        layout = QVBoxLayout()
+        layout.addWidget(self.qtableview)
+        
+        self.qtableview.resizeColumnsToContents()
+        # Establecer el diseño de la ventana
+        self.setLayout(layout)

@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="inicio"/>
     <widget class="QWidget" name="alt_grd">
@@ -1061,8 +1061,8 @@
         </rect>
        </property>
        <layout class="QGridLayout" name="gcab_glay_2">
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="gcab_let_idguardia"/>
+        <item row="1" column="6">
+         <widget class="QLineEdit" name="gcab_let_medico"/>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="gcab_lbl_9">
@@ -1074,16 +1074,90 @@
         <item row="2" column="1">
          <widget class="QDateTimeEdit" name="gcab_fyh_finidguardia"/>
         </item>
-        <item row="0" column="3">
-         <widget class="QLineEdit" name="gcab_let_base"/>
+        <item row="2" column="5">
+         <widget class="QLabel" name="gcab_lbl_10">
+          <property name="text">
+           <string>Enfermero</string>
+          </property>
+         </widget>
         </item>
-        <item row="1" column="5">
-         <widget class="QLineEdit" name="gcab_let_medico"/>
+        <item row="2" column="8">
+         <widget class="QPushButton" name="gcab_clb_editenfermero">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset theme="a">
+            <normaloff>img/edit.jpg</normaloff>img/edit.jpg</iconset>
+          </property>
+         </widget>
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="gcab_lbl_7">
           <property name="text">
            <string>Fecha Inicio</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLineEdit" name="gcab_let_base"/>
+        </item>
+        <item row="0" column="5">
+         <widget class="QLabel" name="gcab_lbl_5">
+          <property name="text">
+           <string>Paramedico</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="8">
+         <widget class="QPushButton" name="gcab_clb_editmedico">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset theme="a">
+            <normaloff>img/edit.jpg</normaloff>img/edit.jpg</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="5">
+         <widget class="QLabel" name="gcab_lbl_8">
+          <property name="text">
+           <string>Medico</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="8">
+         <widget class="QPushButton" name="gcab_clb_editparamedico">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset theme="a">
+            <normaloff>img/edit.jpg</normaloff>img/edit.jpg</iconset>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="9">
+         <widget class="QLabel" name="gcab_lbl_6">
+          <property name="text">
+           <string>Observaciones</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDateTimeEdit" name="gcab_fyh_inicioidguardia"/>
+        </item>
+        <item row="2" column="6">
+         <widget class="QLineEdit" name="gcab_let_enfermero"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="gcab_let_idguardia"/>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_20">
+          <property name="text">
+           <string>Base</string>
           </property>
          </widget>
         </item>
@@ -1094,47 +1168,17 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="4">
-         <widget class="QLabel" name="gcab_lbl_5">
-          <property name="text">
-           <string>Paramedico</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="4">
-         <widget class="QLabel" name="gcab_lbl_10">
-          <property name="text">
-           <string>Enfermero</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="6">
-         <widget class="QLabel" name="gcab_lbl_6">
-          <property name="text">
-           <string>Observaciones</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="5">
-         <widget class="QLineEdit" name="gcab_let_enfermero"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QDateTimeEdit" name="gcab_fyh_inicioidguardia"/>
-        </item>
-        <item row="0" column="5">
          <widget class="QLineEdit" name="gcab_let_paramedico"/>
         </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="label_20">
+        <item row="0" column="4">
+         <widget class="QPushButton" name="gcab_clb_editbase">
           <property name="text">
-           <string>Base</string>
+           <string/>
           </property>
-         </widget>
-        </item>
-        <item row="1" column="4">
-         <widget class="QLabel" name="gcab_lbl_8">
-          <property name="text">
-           <string>Medico</string>
+          <property name="icon">
+           <iconset theme="a">
+            <normaloff>img/edit.jpg</normaloff>img/edit.jpg</iconset>
           </property>
          </widget>
         </item>
