@@ -11,7 +11,7 @@ class AltaGuardiasMedicos(ConexionConBase):
                 WHERE grd_txt_estado = 'incompleta' OR grd_txt_estado = 'completa'"""
         return self.ejecutar_consulta(consulta)
     
-    def fill_table_enfermero_idm(self):
+    def fill_table_medico_idm(self):
         consulta = """SELECT med_int_id , med_txt_nombre , med_txt_apellido , med_int_matricula
                 FROM Medicos
                 """

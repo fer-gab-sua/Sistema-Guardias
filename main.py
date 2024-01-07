@@ -28,6 +28,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication([])
 
     login_form = Ui_LoginForm()
+    
     login_form.show()
 
     app.exec_()
