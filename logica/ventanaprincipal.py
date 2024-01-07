@@ -630,6 +630,7 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         header_labels_base = ['Id' , 'Base', 'Patente']
         base = self.sqlaltaguardia_paramedico.fill_Bases_sql()
         subventana_edit = SubVentanaEditDotacion("Enfermeros",self.model_moviles,base,header_labels_base)
+        subventana_edit.resultado
         subventana_edit.exec_()
 
 
@@ -788,3 +789,4 @@ class SubVentanaEditDotacion(QDialog):
         self.qtableview.resizeColumnsToContents()
         # Establecer el diseño de la ventana
         self.setLayout(layout)
+        self.resultado = 1
