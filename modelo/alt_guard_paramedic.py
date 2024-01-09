@@ -44,3 +44,11 @@ class AltaGuardiaMovilParamedico(ConexionConBase):
     def alta_guardia_movil(self,idmovil,idparamedico,fyh_inicio,fyh_fin):
         consulta = "INSERT INTO [GuardiasMedicas].[dbo].[Guardias] ([grd_int_idmovil],[grd_int_idparamedico],[grd_fyh_inicio],[grd_fyh_fin],[grd_txt_estado]) VALUES (?, ?, ?, ? , ?)"
         self.ejecutar_consulta(consulta, idmovil,idparamedico,fyh_inicio,fyh_fin,"incompleta")
+
+    def update_movil(self,id_guardia,id_movil):
+        consulta="UPDATE  [GuardiasMedicas].[dbo].[Guardias] SET grd_int_idmovil = ? WHERE grd_int_id = ?"
+        self.ejecutar_consulta(consulta,id_movil,id_guardia)
+
+    def update_paramedico(self,id_guardia,id_movil):
+        consulta="UPDATE  [GuardiasMedicas].[dbo].[Guardias] SET grd_int_idparamedico= ? WHERE grd_int_id = ?"
+        self.ejecutar_consulta(consulta,id_movil,id_guardia)

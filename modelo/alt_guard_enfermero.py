@@ -38,3 +38,7 @@ class AltaGuardiasEnfermero(ConexionConBase):
     def borrar_enfermero(self,id_enfermero):
             consulta = "DELETE FROM [GuardiasMedicas].[dbo].[Enfermeros] WHERE enf_int_id = (?)"
             self.ejecutar_consulta(consulta, id_enfermero)
+
+    def update_enfermero(self,id_guardia,id_movil):
+        consulta="UPDATE  [GuardiasMedicas].[dbo].[Guardias] SET grd_int_idenfermero = ? WHERE grd_int_id = ?"
+        self.ejecutar_consulta(consulta,id_movil,id_guardia)

@@ -128,6 +128,8 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         #hago las conecciones
         self.gcab_clb_editbase.clicked.connect(self.editmovil)
         self.gcab_clb_editmedico.clicked.connect(self.editmedico)
+        self.gcab_clb_editparamedico.clicked.connect(self.editparamedico)
+        self.gcab_clb_editenfermero.clicked.connect(self.editenfermero)
 
     """######### FUNCIONES GENERALES#####################"""
 
@@ -632,18 +634,46 @@ class Ui_VentanaPrincipal(QtWidgets.QMainWindow):
         base = self.sqlaltaguardia_paramedico.fill_Bases_sql()
         id_guardia = self.gcab_let_idguardia.text()
         print(id_guardia)
-        subventana_edit = SubVentanaEditDotacion("Enfermeros",self.model_moviles,base,header_labels_base,id_guardia)
+        subventana_edit = SubVentanaEditDotacion("Base",self.model_moviles,base,header_labels_base,id_guardia,self.sqlaltaguardia_paramedico)
         subventana_edit.resultado
+        subventana_edit.finished.connect(self.fill_cab_tlbv_1)
         subventana_edit.exec_()
+        
+
 
     def editmedico(self):
-        header_labels_base = ['Id' , 'Base', 'Patente']
+        header_labels_base = ['Id' , 'Nombre', 'Apellido', 'Matricula']
         base = self.sqlaltaguardia_medicos.fill_table_medico_idm()
         id_guardia = self.gcab_let_idguardia.text()
         print(id_guardia)
-        subventana_edit = SubVentanaEditDotacion("Enfermeros",self.model_moviles,base,header_labels_base,id_guardia)
+        subventana_edit = SubVentanaEditDotacion("Medicos",self.model_moviles,base,header_labels_base,id_guardia,self.sqlaltaguardia_medicos)
         subventana_edit.resultado
+        subventana_edit.finished.connect(self.fill_cab_tlbv_1)
         subventana_edit.exec_()
+        
+    def editparamedico(self):
+        header_labels_base = ['Id' , 'Legajo', 'Apellido', 'Nombre', 'Fecha Vencimiento']
+        base = self.sqlaltaguardia_paramedico.fill_paramedicos_sql()
+        id_guardia = self.gcab_let_idguardia.text()
+        print(id_guardia)
+        subventana_edit = SubVentanaEditDotacion("Paramedicos",self.model_paramedicos,base,header_labels_base,id_guardia,self.sqlaltaguardia_paramedico)
+        subventana_edit.resultado
+        subventana_edit.finished.connect(self.fill_cab_tlbv_1)
+        subventana_edit.exec_()
+
+    def editenfermero(self):
+        header_labels_base = ['Id' , 'Nombre', 'Apellido', 'Matricula']
+        base = self.sqlaltaguardia_enfermero.fill_table_enfermero_ide()
+        id_guardia = self.gcab_let_idguardia.text()
+        print(id_guardia)
+        subventana_edit = SubVentanaEditDotacion("Enfermero",self.model_enfermero_guardias,base,header_labels_base,id_guardia,self.sqlaltaguardia_enfermero)
+        subventana_edit.resultado
+        subventana_edit.finished.connect(self.fill_cab_tlbv_1)
+        subventana_edit.exec_()
+
+    def actualizar_ventana_cabina(self):
+        self.fill_cab_tlbv_1()
+        self.filtrar_select_cab(2)
 
     """########## GUARDIAS HISTORIAL ####################### """
 
@@ -774,15 +804,18 @@ class SubVentanaAddMedicoEnfermero(QDialog):
         self.accept()
 
 class SubVentanaEditDotacion(QDialog):
-    def __init__(self,tipo_dot,modelo,base_datos,header_labels,id_guardia):
+    def __init__(self,tipo_dot,modelo,base_datos,header_labels,id_guardia,obj_base):
         super(SubVentanaEditDotacion, self).__init__()
         # Crear un QTableView
         self.modelo = modelo
+        self.obj_base = obj_base
+        self.tipo_dotacion = tipo_dot
         self.id_guardia = id_guardia
         self.qtableview = QTableView()
         self.qtableview.setModel(modelo)
         self.setWindowTitle(tipo_dot)
         self.qtableview.setEditTriggers(QTableView.NoEditTriggers)
+        self.label_info = QLabel("Doble Click para seleccionar dotacion nueva:")
         if base_datos:
             modelo.clear()
 
@@ -797,6 +830,7 @@ class SubVentanaEditDotacion(QDialog):
         # Crear un modelo de datos (esto es solo un ejemplo, debes ajustarlo según tus necesidades)
         # Crear un diseño vertical para la ventana
         layout = QVBoxLayout()
+        layout.addWidget(self.label_info)
         layout.addWidget(self.qtableview)
         self.qtableview.doubleClicked.connect(self.datoeditado)
         self.qtableview.resizeColumnsToContents()
@@ -816,9 +850,21 @@ class SubVentanaEditDotacion(QDialog):
         respuesta = msg.exec_()
         # Procesar la respuesta
         if respuesta == QMessageBox.Yes:
-            # Si el usuario hizo clic en "Sí", eliminar el registro
-            #self.sqlaltaguardia_paramedico.borrar_movil(base)
-            pass
+            if self.tipo_dotacion == "Base":
+                self.obj_base.update_movil(self.id_guardia,dato)
+
+            elif self.tipo_dotacion == "Medicos":
+                self.obj_base.update_medico(self.id_guardia,dato)
+
+            elif self.tipo_dotacion == "Paramedicos":
+                self.obj_base.update_paramedico(self.id_guardia,dato)
+
+            elif self.tipo_dotacion == "Enfermero":
+                self.obj_base.update_enfermero(self.id_guardia,dato)
+
+            else:
+                print("ERROR EN TIPO DE DOTACION")
+        
         else:
             # Si el usuario hizo clic en "No" o cerró la ventana, no hacer nada
             print("Eliminación cancelada.")
